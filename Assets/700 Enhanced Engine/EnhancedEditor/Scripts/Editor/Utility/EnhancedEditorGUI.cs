@@ -339,6 +339,7 @@ namespace EnhancedEditor.Editor {
             SerializedProperty _next = _property.Copy();
             _next.NextVisible(false);
 
+            string _nextPropertyPath = _next.propertyPath;
             float _origin = _position.y;
 
             // Property label header.
@@ -373,9 +374,10 @@ namespace EnhancedEditor.Editor {
             // ----- Local Method ----- \\
 
             void DrawProperty() {
+
                 do {
                     // Break when getting outside of this property class / struct.
-                    if (SerializedProperty.EqualContents(_current, _next))
+                    if (_current.propertyPath == _nextPropertyPath)
                         break;
 
                     _position.y += _position.height + EditorGUIUtility.standardVerticalSpacing;
@@ -1006,8 +1008,8 @@ namespace EnhancedEditor.Editor {
         public static void DuoField(Rect _position, SerializedProperty _property, GUIContent _label, SerializedProperty _secondProperty, GUIContent _secondLabel,
                                     float _secondPropertyWidth, out float _extraHeight) {
             // Prefix label.
-            _label = EnhancedEditorGUIUtility.GetLabelGUI(string.IsNullOrEmpty(_secondLabel.text)    ? _label.text    : string.Format(DuoGUIFormat, _label.text, _secondLabel.text),
-                                                          string.IsNullOrEmpty(_secondLabel.tooltip) ? _label.tooltip : string.Format(DuoGUITooltipFormat, _label.tooltip, _secondLabel.tooltip));
+            _label = EnhancedEditorGUIUtility.GetLabelGUI(string.Format(DuoGUIFormat, _label.text, _secondLabel.text),
+                                                          string.Format(DuoGUITooltipFormat, _label.tooltip, _secondLabel.tooltip));
 
             Rect _temp = _position;
 
@@ -4747,7 +4749,7 @@ namespace EnhancedEditor.Editor {
         /// <returns><inheritdoc cref="DocumentationMethodTotal(Rect, out float)" path="/param[@name='_totalHeight']"/></returns>
         public static float EnhancedPropertyField(Rect _position, SerializedProperty _property, GUIContent _label, bool _includeChildren = true) {
             DrawerInfos _drawer = GetPropertyEditor(_property);
-            float _height;
+            float _height = _position.height;
 
             switch (_drawer.State) {
 
@@ -5146,9 +5148,9 @@ namespace EnhancedEditor.Editor {
 
         private static ScriptableObject DoScriptableObjectContentField(Rect _position, GUIContent _label, ScriptableObject _scriptableObject, Type _objectType,
                                                                        ScriptableObjectDrawerMode _mode, ref bool _foldout, out float _extraHeight, bool _drawField) {
-            bool _isContent     = _scriptableObject != null;
-            bool _drawButton    = _mode.HasFlagUnsafe(ScriptableObjectDrawerMode.Button)  && _drawField;
-            bool _drawContent   = _mode.HasFlagUnsafe(ScriptableObjectDrawerMode.Content) && _isContent;
+            bool _isContent = _scriptableObject != null;
+            bool _drawButton = _mode.HasFlag(ScriptableObjectDrawerMode.Button) && _drawField;
+            bool _drawContent = _mode.HasFlag(ScriptableObjectDrawerMode.Content) && _isContent;
 
             // Object registration.
             SerializedObject _serializedObject = null;
@@ -5471,20 +5473,20 @@ namespace EnhancedEditor.Editor {
 
         // -----------------------
 
-        internal static float ManageDynamicControlHeight(GUIContent _label, float _height) {
+        public static float ManageDynamicControlHeight(GUIContent _label, float _height) {
             // Get control id.
             int _id = EnhancedEditorGUIUtility.GetControlID(_label, FocusType.Keyboard);
             return ManageDynamicControlHeight(_id, _height);
         }
 
-        internal static float ManageDynamicControlHeight(SerializedProperty _property, float _height) {
+        public static float ManageDynamicControlHeight(SerializedProperty _property, float _height) {
             // Get property id.
             int _id = EnhancedEditorUtility.GetSerializedPropertyID(_property).GetHashCode();
 
             return ManageDynamicControlHeight(_id, _height);
         }
 
-        internal static float ManageDynamicControlHeight(int _id, float _height) {
+        public static float ManageDynamicControlHeight(int _id, float _height) {
 
             // Id registration
             if (!dynamicGUIControlHeight.ContainsKey(_id)) {

@@ -409,7 +409,7 @@ namespace EnhancedEditor.Editor {
         #region Event and Clicks
         public const float ResizeHandlerExtent = 3f;
 
-        private static readonly int resizeControlID = "ReduceSize".GetHashCode();
+        private static readonly int resizeControlID = "ReduceSize".GetStableHashCode();
         private static Vector2 mouseDownPosition = new Vector2();
 
         // -----------------------
