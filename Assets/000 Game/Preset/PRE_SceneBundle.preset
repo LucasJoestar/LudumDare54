@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!181963792 &2655988077585873504
+Preset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: PRE_SceneBundle
+  m_TargetType:
+    m_NativeTypeID: 114
+    m_ManagedTypePPtr: {fileID: 11500000, guid: f707951cc6c2e4c489eb4e82434806fb, type: 3}
+    m_ManagedTypeFallback: 
+  m_Properties:
+  - target: {fileID: 0}
+    propertyPath: m_Enabled
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorHideFlags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorClassIdentifier
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Scenes.Array.size
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Scenes.Array.data[0].guid
+    value: 45693e35122f6a841b348f2810c7f73d
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: activeSceneIndex
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: comment
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Behaviour.name
+    value: Twin-Peaks
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Behaviour.type.typeName
+    value: TwinPeaks.Core.SceneManagement.TwinPeaksSceneBundleBehaviour, TwinPeaks.Core
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Behaviour.type.constraints
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Behaviour.type.interfaces.Array.size
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Behaviour.value
+    value: TwinPeaks.Core TwinPeaks.Core.SceneManagement.TwinPeaksSceneBundleBehaviour
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Behaviour.value.NextScene
+    value: 
+    objectReference: {fileID: 11400000, guid: ff4e73ee9e0a7cb4984c7c36ea882a90, type: 2}
+  - target: {fileID: 0}
+    propertyPath: Behaviour.value.LoadingScreen
+    value: 
+    objectReference: {fileID: 21300000, guid: 6a58bb86d6986f44ab4bd4bd1a7ca885, type: 3}
+  - target: {fileID: 0}
+    propertyPath: Behaviour.doFullCopy
+    value: 1
+    objectReference: {fileID: 0}
+  m_ExcludedProperties: []

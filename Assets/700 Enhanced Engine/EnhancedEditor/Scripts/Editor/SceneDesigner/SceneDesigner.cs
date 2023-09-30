@@ -89,11 +89,11 @@ namespace EnhancedEditor.Editor {
             get {
                 EnhancedEditorUserSettings _userSettings = EnhancedEditorUserSettings.Instance;
 
-                if (((settings == null) || (settingsProperty.serializedObject != _userSettings.SerializedObject))
+                if (((settings == null) || (settingsProperty == null) || (settingsProperty.serializedObject != _userSettings.SerializedObject))
                    && !_userSettings.GetSetting(settingsGUID, out settings, out settingsProperty))
                 {
                     settings = new SceneDesignerEnhancedSettings(settingsGUID);
-                    _userSettings.AddSetting(settings);
+                    settingsProperty = _userSettings.AddSetting(settings);
                 }
 
                 return settings;

@@ -1,0 +1,301 @@
+{
+    "GUID": 379458118,
+    "selectedTabIndex": 3,
+    "enabled": true,
+    "Columns": {
+        "IsEditable": false,
+        "IsReorderable": true,
+        "IsReadonly": true,
+        "Array": [
+            2,
+            8,
+            16,
+            64,
+            1024,
+            32768,
+            262144,
+            2097152,
+            4194304
+        ]
+    },
+    "CustomFilters": {
+        "IsEditable": true,
+        "IsReorderable": true,
+        "IsReadonly": false,
+        "Array": [
+            {
+                "Name": "Test Filter",
+                "Enabled": true,
+                "IsVisible": true,
+                "Color": {
+                    "r": 0.15000000596046449,
+                    "g": 0.6000000238418579,
+                    "b": 0.15000000596046449,
+                    "a": 0.699999988079071
+                },
+                "TextColor": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "UseColor": true,
+                "UseTextColor": false,
+                "Icon": {
+                    "fileID": 2800000,
+                    "guid": "d137a89f9c7543a41994b828ddb3a89a",
+                    "type": 3
+                },
+                "filterIcon": 15,
+                "DoPinFilter": false,
+                "Keywords": {
+                    "IsEditable": true,
+                    "IsReorderable": true,
+                    "IsReadonly": false,
+                    "Array": [
+                        {
+                            "Value": "Test",
+                            "Logs": -1,
+                            "Columns": 1024
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "DefaultFilters": {
+        "IsEditable": false,
+        "IsReorderable": false,
+        "IsReadonly": false,
+        "Array": [
+            {
+                "Name": "Log",
+                "Enabled": true,
+                "IsVisible": true,
+                "Color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 0.699999988079071
+                },
+                "TextColor": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "UseColor": false,
+                "UseTextColor": false,
+                "Icon": {
+                    "fileID": 2800000,
+                    "guid": "df46d2afafffabc43bedfbdb62bb0cf2",
+                    "type": 3
+                },
+                "filterIcon": 8,
+                "DoPinFilter": true,
+                "LogType": 0
+            },
+            {
+                "Name": "Warning",
+                "Enabled": true,
+                "IsVisible": true,
+                "Color": {
+                    "r": 0.5,
+                    "g": 0.44999998807907107,
+                    "b": 0.10000000149011612,
+                    "a": 0.699999988079071
+                },
+                "TextColor": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "UseColor": true,
+                "UseTextColor": false,
+                "Icon": {
+                    "fileID": 2800000,
+                    "guid": "7177ed29f387f5c488750aa2d4cef5f0",
+                    "type": 3
+                },
+                "filterIcon": 11,
+                "DoPinFilter": true,
+                "LogType": 1
+            },
+            {
+                "Name": "Error",
+                "Enabled": true,
+                "IsVisible": true,
+                "Color": {
+                    "r": 0.699999988079071,
+                    "g": 0.15000000596046449,
+                    "b": 0.15000000596046449,
+                    "a": 0.699999988079071
+                },
+                "TextColor": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "UseColor": true,
+                "UseTextColor": false,
+                "Icon": {
+                    "fileID": 2800000,
+                    "guid": "c6a7511382d20be468b84085e0a5d970",
+                    "type": 3
+                },
+                "filterIcon": 13,
+                "DoPinFilter": true,
+                "LogType": 2
+            },
+            {
+                "Name": "Assert",
+                "Enabled": true,
+                "IsVisible": true,
+                "Color": {
+                    "r": 0.800000011920929,
+                    "g": 0.5,
+                    "b": 0.20000000298023225,
+                    "a": 0.699999988079071
+                },
+                "TextColor": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "UseColor": true,
+                "UseTextColor": false,
+                "Icon": {
+                    "fileID": 2800000,
+                    "guid": "e04c3ffb1e16fa948bef14129573993d",
+                    "type": 3
+                },
+                "filterIcon": 10,
+                "DoPinFilter": true,
+                "LogType": 3
+            },
+            {
+                "Name": "Exception",
+                "Enabled": true,
+                "IsVisible": true,
+                "Color": {
+                    "r": 0.75,
+                    "g": 0.20000000298023225,
+                    "b": 0.699999988079071,
+                    "a": 0.699999988079071
+                },
+                "TextColor": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "UseColor": true,
+                "UseTextColor": false,
+                "Icon": {
+                    "fileID": 2800000,
+                    "guid": "94992db677ac2c64893ada32c494c849",
+                    "type": 3
+                },
+                "filterIcon": 6,
+                "DoPinFilter": true,
+                "LogType": 4
+            },
+            {
+                "Name": "External",
+                "Enabled": true,
+                "IsVisible": true,
+                "Color": {
+                    "r": 0.25,
+                    "g": 0.5,
+                    "b": 0.699999988079071,
+                    "a": 0.699999988079071
+                },
+                "TextColor": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "UseColor": true,
+                "UseTextColor": false,
+                "Icon": {
+                    "fileID": 2800000,
+                    "guid": "b4d1c6a3fad482a418d4d51e8f6fe0ca",
+                    "type": 3
+                },
+                "filterIcon": 4,
+                "DoPinFilter": false,
+                "LogType": 5
+            },
+            {
+                "Name": "Compilation",
+                "Enabled": true,
+                "IsVisible": true,
+                "Color": {
+                    "r": 0.699999988079071,
+                    "g": 0.25,
+                    "b": 0.4000000059604645,
+                    "a": 0.699999988079071
+                },
+                "TextColor": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "UseColor": true,
+                "UseTextColor": false,
+                "Icon": {
+                    "fileID": 2800000,
+                    "guid": "0c49632b9ce93584b8e95cf8296b7349",
+                    "type": 3
+                },
+                "filterIcon": 12,
+                "DoPinFilter": false,
+                "LogType": 6
+            }
+        ]
+    },
+    "IgnoredStackCalls": {
+        "IsEditable": true,
+        "IsReorderable": true,
+        "IsReadonly": false,
+        "Array": [
+            {
+                "Namespace": "EnhancedEditor",
+                "UseNamespace": true,
+                "Class": "UnityObjectLogger",
+                "UseClass": true,
+                "Method": "Log",
+                "UseMethod": false
+            },
+            {
+                "Namespace": "EnhancedEditor",
+                "UseNamespace": true,
+                "Class": "EnhancedLogger",
+                "UseClass": true,
+                "Method": "Log",
+                "UseMethod": false
+            },
+            {
+                "Namespace": "UnityEngine",
+                "UseNamespace": true,
+                "Class": "Debug",
+                "UseClass": true,
+                "Method": "Log",
+                "UseMethod": false
+            },
+            {
+                "Namespace": "UnityEngine",
+                "UseNamespace": true,
+                "Class": "Logger",
+                "UseClass": true,
+                "Method": "Log",
+                "UseMethod": false
+            }
+        ]
+    }
+}
