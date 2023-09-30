@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27e057ffb8f9c694088949aa15b9a067, type: 3}
+  m_Name: IPA_Gameplay.Player.MoveForward
+  m_EditorClassIdentifier: 
+  objectID:
+    type: 3
+    assetGUID: 2159216bdfaa2004d947b1986b6813fe
+    objectID: 11400000
+    prefabID: 0
+  enableOnInit: 0
+  isPaused: 0
+  positive: {fileID: 11400000, guid: ec688c0e5e562af4bb51a23500b91263, type: 2}
+  negative: {fileID: 11400000, guid: 0dcddbb5e651faf47b3a1ef1c3990191, type: 2}
+  isPositive: 1

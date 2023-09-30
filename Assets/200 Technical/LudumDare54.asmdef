@@ -5,7 +5,9 @@
         "DOTween.Modules",
         "EnhancedEditor",
         "EnhancedFramework.Core",
+        "EnhancedFramework.Core.Splash",
         "EnhancedFramework.Inputs",
+        "EnhancedFramework.UI",
         "Unity.InputSystem",
         "Unity.TextMeshPro",
         "UnityEngine.UI"

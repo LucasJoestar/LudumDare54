@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c43c75ba9c2c6b4ebe11bc8f613f3e9, type: 3}
+  m_Name: IPS_Utility_Skip
+  m_EditorClassIdentifier: 
+  objectID:
+    type: 3
+    assetGUID: f685e5ab5f205b84bb9b7529fc931820
+    objectID: 11400000
+    prefabID: 0
+  enableOnInit: 0
+  isPaused: 0
+  isOrphan: 0
+  map: {fileID: 11400000, guid: 6e485dc41797b6b47991e139076faa99, type: 2}
+  input:
+    m_Name: Skip
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: 1a75c2e3-3f13-4a36-a664-37fcf8461f33
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0

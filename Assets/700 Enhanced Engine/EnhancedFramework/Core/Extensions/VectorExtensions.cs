@@ -46,10 +46,18 @@ namespace EnhancedFramework.Core {
 			return _direction - (_normal * Vector3.Dot(_direction, _normal));
 		}
 
-		/// <summary>
-		/// Get this vector flat value, that is without its vertical (Y axis) component.
-		/// </summary>
-		public static Vector3 Flat(this Vector3 _vector) {
+        /// <summary>
+        /// Subtracts any part of a direction vector parallel to a normal vector,
+        /// leaving only the perpendicular component.
+        /// </summary>
+        public static Vector2 PerpendicularSurface(this Vector2 _direction, Vector2 _normal) {
+            return _direction - (_normal * Vector2.Dot(_direction, _normal));
+        }
+
+        /// <summary>
+        /// Get this vector flat value, that is without its vertical (Y axis) component.
+        /// </summary>
+        public static Vector3 Flat(this Vector3 _vector) {
 			return new Vector3(_vector.x, 0f, _vector.z);
         }
 
