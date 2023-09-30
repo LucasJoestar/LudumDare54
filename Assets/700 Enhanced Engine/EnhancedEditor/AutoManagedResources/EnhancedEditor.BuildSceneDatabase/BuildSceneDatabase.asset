@@ -13,6 +13,13 @@ MonoBehaviour:
   m_Name: BuildSceneDatabase
   m_EditorClassIdentifier: 
   sceneBundles: []
-  buildSceneGUIDs: []
+  buildSceneGUIDs:
+  - 8c9cfa26abfee488c85f1582747f6a02
   coreSceneIndex: -1
-  nonBuildScenes: []
+  nonBuildScenes:
+  - Name: URP2DSceneTemplate
+    GUID: 2cda990e2423bbf4892e6590ba056729
+  - Name: Basic
+    GUID: e026d555eae824f65922633f37a14385
+  - Name: Standard
+    GUID: 5cae0d87369a2405eaa962b8d920b947
