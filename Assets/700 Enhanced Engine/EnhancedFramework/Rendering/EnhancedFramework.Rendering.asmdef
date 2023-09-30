@@ -1,0 +1,33 @@
+{
+    "name": "EnhancedFramework.Rendering",
+    "rootNamespace": "EnhancedFramework.Rendering",
+    "references": [
+        "EnhancedEditor",
+        "EnhancedFramework.Core",
+        "EnhancedFramework.UI",
+        "Unity.EditorCoroutines.Editor",
+        "Unity.RenderPipelines.Core.Runtime"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "RENDER_PIPELINE"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.unity.editorcoroutines",
+            "expression": "",
+            "define": "EDITOR_COROUTINE_ENABLED"
+        },
+        {
+            "name": "com.unity.render-pipelines.core",
+            "expression": "",
+            "define": "RENDER_PIPELINE"
+        }
+    ],
+    "noEngineReferences": false
+}

@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c101adbedafc0a943aaeb9d832f46417, type: 3}
+  m_Name: EnhancedEditorSettings
+  m_EditorClassIdentifier: 
+  settings:
+  - rid: 0
+  - rid: 1
+  - rid: 2
+  - rid: 3
+  - rid: 4
+  - rid: 5
+  - rid: 6
+  references:
+    version: 2
+    RefIds:
+    - rid: 0
+      type: {class: FolderEnhancedSettings, ns: EnhancedEditor.Editor, asm: EnhancedEditor.Editor}
+      data:
+        GUID: 2105711190
+        DefaultValue: EnhancedEditor/Editor/ScriptTemplates
+        InProjectOnly: 1
+        Folder: 700 Enhanced Engine/EnhancedEditor/Editor/ScriptTemplates
+    - rid: 1
+      type: {class: CoreSceneEnhancedSettings, ns: EnhancedEditor.Editor, asm: EnhancedEditor.Editor}
+      data:
+        GUID: -1418017734
+        CoreScene:
+          guid: 04b2c9d64d7458340a264cf01c626fc5
+        IsCoreSceneEnabled: 1
+    - rid: 2
+      type: {class: FolderEnhancedSettings, ns: EnhancedEditor.Editor, asm: EnhancedEditor.Editor}
+      data:
+        GUID: 467073581
+        DefaultValue: EnhancedEditor/AutoManagedResources
+        InProjectOnly: 1
+        Folder: 700 Enhanced Engine/EnhancedEditor/AutoManagedResources
+    - rid: 3
+      type: {class: FolderEnhancedSettings, ns: EnhancedEditor.Editor, asm: EnhancedEditor.Editor}
+      data:
+        GUID: -1069210582
+        DefaultValue: EnhancedEditor/Editor/InstanceTrackers
+        InProjectOnly: 1
+        Folder: 700 Enhanced Engine/EnhancedEditor/Editor/InstanceTracker
+    - rid: 4
+      type: {class: BooleanEnhancedSettings, ns: EnhancedEditor.Editor, asm: EnhancedEditor.Editor}
+      data:
+        GUID: -949554018
+        Value: 1
+    - rid: 5
+      type: {class: CoreSceneEnhancedSettings, ns: EnhancedEditor.Editor, asm: EnhancedEditor.Editor}
+      data:
+        GUID: -380957182
+        CoreScene:
+          guid: 
+        IsCoreSceneEnabled: 1
+    - rid: 6
+      type: {class: AudioEnhancedSettings, ns: EnhancedFramework.Editor, asm: EnhancedFramework.Editor}
+      data:
+        GUID: 438885523

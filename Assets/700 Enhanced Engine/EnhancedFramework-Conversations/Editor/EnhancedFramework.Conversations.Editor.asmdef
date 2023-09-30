@@ -1,0 +1,29 @@
+{
+    "name": "EnhancedFramework.Conversations.Editor",
+    "rootNamespace": "EnhancedFramework.Conversations.Editor",
+    "references": [
+        "EnhancedEditor",
+        "EnhancedEditor.Editor",
+        "EnhancedFramework.Conversations",
+        "EnhancedFramework.Core",
+        "Unity.Localization",
+        "Unity.Localization.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.localization",
+            "expression": "",
+            "define": "LOCALIZATION_ENABLED"
+        }
+    ],
+    "noEngineReferences": false
+}

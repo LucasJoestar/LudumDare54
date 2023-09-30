@@ -1,0 +1,28 @@
+{
+    "name": "EnhancedFramework.Localization",
+    "rootNamespace": "EnhancedFramework.Localization",
+    "references": [
+        "EnhancedEditor",
+        "EnhancedFramework.Core",
+        "EnhancedFramework.Core.Splash",
+        "Unity.Localization",
+        "Unity.ResourceManager"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "LOCALIZATION_ENABLED"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.unity.localization",
+            "expression": "",
+            "define": "LOCALIZATION_ENABLED"
+        }
+    ],
+    "noEngineReferences": false
+}

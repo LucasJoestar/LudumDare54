@@ -1,0 +1,20 @@
+{
+    "name": "EnhancedFramework.Physics3D.PlayMaker",
+    "rootNamespace": "EnhancedFramework.Physics3D.PlayMaker",
+    "references": [
+        "EnhancedEditor",
+        "EnhancedFramework.Core",
+        "EnhancedFramework.Physics3D"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "PLAYMAKER"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

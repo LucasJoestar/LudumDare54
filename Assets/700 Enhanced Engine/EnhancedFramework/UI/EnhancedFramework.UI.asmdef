@@ -1,0 +1,38 @@
+{
+    "name": "EnhancedFramework.UI",
+    "rootNamespace": "EnhancedFramework.UI",
+    "references": [
+        "DOTween.Modules",
+        "DOTweenPro.Scripts",
+        "EnhancedEditor",
+        "EnhancedFramework.Core",
+        "Unity.EditorCoroutines.Editor",
+        "Unity.Localization",
+        "Unity.TextMeshPro"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.editorcoroutines",
+            "expression": "",
+            "define": "EDITOR_COROUTINE_ENABLED"
+        },
+        {
+            "name": "com.unity.localization",
+            "expression": "",
+            "define": "LOCALIZATION_ENABLED"
+        },
+        {
+            "name": "com.unity.textmeshpro",
+            "expression": "",
+            "define": "TEXT_MESH_PRO_PACKAGE"
+        }
+    ],
+    "noEngineReferences": false
+}

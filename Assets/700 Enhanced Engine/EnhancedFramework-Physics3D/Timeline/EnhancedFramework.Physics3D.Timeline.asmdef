@@ -1,0 +1,28 @@
+{
+    "name": "EnhancedFramework.Physics3D.Timeline",
+    "rootNamespace": "EnhancedFramework.Physics3D.Timeline",
+    "references": [
+        "EnhancedEditor",
+        "EnhancedFramework.Core",
+        "EnhancedFramework.Physics3D",
+        "EnhancedFramework.Timeline",
+        "Unity.Timeline"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "TIMELINE_ENABLED"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.unity.timeline",
+            "expression": "",
+            "define": "TIMELINE_ENABLED"
+        }
+    ],
+    "noEngineReferences": false
+}

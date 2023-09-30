@@ -1,0 +1,22 @@
+{
+    "name": "EnhancedFramework.PlayMaker",
+    "rootNamespace": "EnhancedFramework.PlayMaker",
+    "references": [
+        "EnhancedEditor",
+        "EnhancedFramework.Core",
+        "EnhancedFramework.Inputs",
+        "EnhancedFramework.Timeline",
+        "EnhancedFramework.UI"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "PLAYMAKER"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
