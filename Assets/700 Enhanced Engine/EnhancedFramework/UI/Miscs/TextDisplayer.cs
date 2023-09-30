@@ -189,8 +189,8 @@ namespace EnhancedFramework.UI {
             }
 
             // Tween.
-            tween = text.DOMaxVisibleCharacters(_count, _getDuration(_count - _visibleCount)).SetEase(Ease.Linear)
-                        .SetUpdate(useRealTime).SetRecyclable(true).SetAutoKill(true).OnKill(OnKilled);
+            /*tween = text.DOMaxVisibleCharacters(_count, _getDuration(_count - _visibleCount)).SetEase(Ease.Linear)
+                        .SetUpdate(useRealTime).SetRecyclable(true).SetAutoKill(true).OnKill(OnKilled);*/
 
             // ----- Local Method ----- \\
 
