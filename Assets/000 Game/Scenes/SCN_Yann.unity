@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 95726383}
   - component: {fileID: 95726382}
   - component: {fileID: 95726384}
+  - component: {fileID: 95726385}
   m_Layer: 0
   m_Name: TestBlock
   m_TagString: Untagged
@@ -157,7 +158,7 @@ MonoBehaviour:
   Tags:
     Tags: []
   lastModifiedBy: NayPl
-  lastModifiedDate: 10/1/2023 10:02:24 AM
+  lastModifiedDate: 10/1/2023 11:44:45 AM
   IsEditorPreview: 0
   isHeader: 0
   overrideHierarchyStyle: 0
@@ -258,18 +259,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0efd7d09a87ac2c4ca27667320abe7ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &95726385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95726381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 133546439a3edf545b3ca198e92b6fe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   chronos: 1
   objectID:
     type: 2
     assetGUID: c863e4440ec306d428848555b2aa06a9
-    objectID: 95726384
+    objectID: 95726385
     prefabID: 0
-  BlockStructure:
-  - {x: 0, y: -1}
-  - {x: 0, y: 0}
-  - {x: 0, y: 1}
-  - {x: 1, y: 0}
-  - {x: -1, y: 0}
+  BlockStructure: []
   OriginBlock: {x: 0, y: 0}
 --- !u!1 &593879056
 GameObject:
@@ -305,7 +313,7 @@ MonoBehaviour:
   Tags:
     Tags: []
   lastModifiedBy: NayPl
-  lastModifiedDate: 10/1/2023 9:39:19 AM
+  lastModifiedDate: 10/1/2023 11:44:45 AM
   IsEditorPreview: 0
   isHeader: 0
   overrideHierarchyStyle: 0
@@ -412,10 +420,9 @@ MonoBehaviour:
     assetGUID: c863e4440ec306d428848555b2aa06a9
     objectID: 593879059
     prefabID: 0
-  weight: 0
+  width: 0
   height: 0
   Grid: 
-  GridBlockMap: []
   Empty: {fileID: 4895939601504087029, guid: ff7a660079bb3714689d0f45380b2775, type: 3}
   Block: {fileID: 6864911988187981022, guid: f35717cac93f3524dbaff14f6a56269b, type: 3}
 --- !u!1660057539 &9223372036854775807
