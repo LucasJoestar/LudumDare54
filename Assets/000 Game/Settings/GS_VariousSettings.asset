@@ -17,3 +17,9 @@ MonoBehaviour:
     assetGUID: fa2aa53a795040643bae2d4d9f22da63
     objectID: 11400000
     prefabID: 0
+  GroundMask:
+    serializedVersion: 2
+    m_Bits: 64
+  WallMask:
+    serializedVersion: 2
+    m_Bits: 128

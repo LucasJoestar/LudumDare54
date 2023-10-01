@@ -17,17 +17,19 @@ MonoBehaviour:
   activeSceneIndex: 0
   comment: 
   Behaviour:
-    name: Twin-Peaks
+    name: LudumDare-54
     type:
-      typeName: EnhancedEditor.DefaultSceneBundleBehaviour, EnhancedEditor
+      typeName: LudumDare54.UI.LudumDareSceneBundleBehaviour, LudumDare54
       constraints: 0
       interfaces: []
     value:
-      rid: 7378761653245181988
+      rid: 7378761660146122759
     doFullCopy: 1
   references:
     version: 2
     RefIds:
-    - rid: 7378761653245181988
-      type: {class: DefaultSceneBundleBehaviour, ns: EnhancedEditor, asm: EnhancedEditor}
-      data: 
+    - rid: 7378761660146122759
+      type: {class: LudumDareSceneBundleBehaviour, ns: LudumDare54.UI, asm: LudumDare54}
+      data:
+        NextScene: {fileID: 11400000}
+        LoadingScreen: {fileID: 21300000, guid: 47a69ff3cba25ff49930a910c4e8c407, type: 3}

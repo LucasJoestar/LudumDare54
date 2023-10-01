@@ -763,10 +763,6 @@ PrefabInstance:
       propertyPath: objectID.assetGUID
       value: 7a06c721e58187f48a7ee16e8972ea43
       objectReference: {fileID: 0}
-    - target: {fileID: 7762677875923320956, guid: 950823e422d4cf845a62c97e7d95dfa6, type: 3}
-      propertyPath: lastModifiedDate
-      value: 30/09/2023 20:39:51
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1214,10 +1210,6 @@ PrefabInstance:
     - target: {fileID: 4930010690935551935, guid: bf2f6302a5712274c9f8cae95a41a331, type: 3}
       propertyPath: objectID.assetGUID
       value: 7a06c721e58187f48a7ee16e8972ea43
-      objectReference: {fileID: 0}
-    - target: {fileID: 6052035158786476595, guid: bf2f6302a5712274c9f8cae95a41a331, type: 3}
-      propertyPath: lastModifiedDate
-      value: 30/09/2023 20:39:51
       objectReference: {fileID: 0}
     - target: {fileID: 8418476460006401243, guid: bf2f6302a5712274c9f8cae95a41a331, type: 3}
       propertyPath: m_LocalPosition.x

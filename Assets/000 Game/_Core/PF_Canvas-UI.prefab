@@ -327,7 +327,7 @@ MonoBehaviour:
   Tags:
     Tags: []
   lastModifiedBy: Lucas
-  lastModifiedDate: 30/09/2023 20:39:04
+  lastModifiedDate: 01/10/2023 01:50:15
   IsEditorPreview: 0
   isHeader: 0
   overrideHierarchyStyle: 0
@@ -461,9 +461,9 @@ MonoBehaviour:
     EnableSelectable: 0
     Selectable: {fileID: 0}
     ActiveSelectable: {fileID: 0}
-    fadeInDuration: 0.2
+    fadeInDuration: 0.12
     fadeInEase: 3
-    fadeOutDuration: 0.2
+    fadeOutDuration: 0.12
     fadeOutEase: 3
   initMode: 0
 --- !u!225 &2809514465160296490
@@ -611,7 +611,7 @@ MonoBehaviour:
   Tags:
     Tags: []
   lastModifiedBy: Lucas
-  lastModifiedDate: 30/09/2023 20:44:28
+  lastModifiedDate: 01/10/2023 01:50:15
   IsEditorPreview: 0
   isHeader: 0
   overrideHierarchyStyle: 0
@@ -707,7 +707,7 @@ MonoBehaviour:
   initMode: 0
   loadingScreen: {fileID: 1081371290608572428}
   cutsceneRender: {fileID: 265606888465406096}
-  defaultLoadingScreen: {fileID: 21300000, guid: 45bc8272442348946a170eae6a2f85a0, type: 3}
+  defaultLoadingScreen: {fileID: 21300000, guid: 47a69ff3cba25ff49930a910c4e8c407, type: 3}
   state: 0
 --- !u!114 &7171422208173388711
 MonoBehaviour:
@@ -748,8 +748,8 @@ MonoBehaviour:
     EnableSelectable: 0
     Selectable: {fileID: 0}
     ActiveSelectable: {fileID: 0}
-    ShowDelay: 0.2
-    HideDelay: 0.2
+    ShowDelay: 0
+    HideDelay: 0
     InstantOnlyAffectFadeIn: 0
     transitionGroup:
       component: {fileID: 6141886769542827349}
@@ -832,7 +832,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 47a69ff3cba25ff49930a910c4e8c407, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

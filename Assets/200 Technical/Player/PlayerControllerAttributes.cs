@@ -4,6 +4,7 @@
 //
 // ============================================================================ //
 
+using DG.Tweening;
 using EnhancedEditor;
 using EnhancedFramework.Core;
 using UnityEngine;
@@ -26,12 +27,33 @@ namespace LudumDare54 {
         [Space(10f), HorizontalLine(SuperColor.Grey, 1f), Space(10f)]
 
         public LayerMask ColliderMask = new LayerMask();
-        public LayerMask TriggerMask =  new LayerMask();
+        public LayerMask TriggerMask  = new LayerMask();
 
         [Space(10f), HorizontalLine(SuperColor.Grey, 1f), Space(10f)]
 
         [Tooltip("Cooldown interval between two fires (in seconds)")]
         [Enhanced, Range(0f, 5f)] public float FireCooldown = .5f;
+
+        [Space(10f), HorizontalLine(SuperColor.Grey, 1f), Space(10f)]
+
+        [Enhanced, Range(0f, 5f)] public float FallDelay        = .5f;
+        [Enhanced, Range(0f, 5f)] public float FallDuration     = .5f;
+        [Enhanced, Range(0f, 5f)] public float FallRespawnDelay = 1f;
+
+        [Space(5f)]
+
+        [Enhanced, Range(-3f, 0f)] public float FallMovementOffset   = -.5f;
+        [Enhanced, Range(0f, 5f)]  public float FallMovementDuration = .2f;
+        public Ease FallMovementEase = Ease.OutSine;
+
+        [Space(5f)]
+
+        public Ease FallScaleEase = Ease.OutSine;
+
+        [Space(5f)]
+
+        [Enhanced, Range(0f, 720f)] public float FallRotation = 360f;
+        public Ease FallRotationEase = Ease.OutSine;
         #endregion
 
         #region Registration

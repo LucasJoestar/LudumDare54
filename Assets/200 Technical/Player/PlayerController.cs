@@ -2,17 +2,36 @@
 //
 // Notes:
 //
+//  • Look at
+//  • Fire (complex) / Preview
+//  • Fire (simple)
+//
 // ============================================================================ //
 
+using DG.Tweening;
 using EnhancedEditor;
 using EnhancedFramework.Core;
 using EnhancedFramework.Core.GameStates;
 using LudumDare54.GameStates;
+using LudumDare54.UI;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 
 namespace LudumDare54
 {
+    /// <summary>
+    /// Base interface for any <see cref="PlayerController"/> trigger.
+    /// </summary>
+    public interface IPlayerTrigger {
+        #region Content
+        void OnPlayerTriggerEnter(PlayerController player);
+        void OnPlayerTriggerExit(PlayerController player);
+        #endregion
+    }
+
     /// <summary>
     /// Player controller (including actions and movements) singleton.
     /// </summary>
@@ -26,6 +45,7 @@ namespace LudumDare54
         [Section("Player Controller")]
 
         [SerializeField, Enhanced, Required] private PlayerControllerAttributes attributes = null;
+        [SerializeField, Enhanced, Required] private Transform spawn = null;
 
         [Space(5f)]
 
@@ -33,12 +53,23 @@ namespace LudumDare54
         [SerializeField, Required] protected new Collider2D collider    = null;
         [SerializeField, Required] protected Collider2D trigger         = null;
 
+        [Space(5f)]
+
+        [SerializeField, Required] protected Animator animator = null;
+
         [Space(10f), HorizontalLine(SuperColor.Grey, 1f), Space(5f)]
 
-        [SerializeField] private bool isPlayable = true;
+        [SerializeField] private bool isPlayable    = true;
         [SerializeField] private bool debugVelocity = false;
 
         [Space(10f)]
+
+        [SerializeField, Enhanced, ReadOnly] private bool isFacingRight = true;
+        [SerializeField, Enhanced, ReadOnly] private bool isGrounded    = true;
+        [SerializeField, Enhanced, ReadOnly] private bool isLoading     = false;
+        [SerializeField, Enhanced, ReadOnly] private bool removeControl = false;
+
+        [Space(5f)]
 
         [SerializeField, Enhanced, ReadOnly] private float speed = 0f;
         [SerializeField, Enhanced, ReadOnly] private Vector2 velocity = Vector2.zero;
@@ -51,12 +82,21 @@ namespace LudumDare54
         // -----------------------
 
         private Transform thisTransform = null;
-        private bool shouldBeRefreshed = false;
+        private bool shouldBeRefreshed  = false;
+
+        private Action fallDelegate = null;
 
         // -----------------------
 
         public override Transform Transform {
-            get { return thisTransform; }
+            get {
+                #if UNITY_EDITOR
+                if (!Application.isPlaying)
+                    return transform;
+                #endif
+
+                return thisTransform;
+            }
         }
 
         public Rigidbody2D Rigidbody {
@@ -70,6 +110,10 @@ namespace LudumDare54
         public Collider2D Trigger {
             get { return trigger; }
         }
+
+        public bool HasControl {
+            get { return isPlayable && isGrounded && !isLoading && !removeControl; }
+        }
         #endregion
 
         #region Enhanced Behaviour
@@ -78,6 +122,7 @@ namespace LudumDare54
         }
 
         private GameState gameState = null;
+        private bool isInit = false;
 
         // -----------------------
 
@@ -85,7 +130,9 @@ namespace LudumDare54
             base.OnBehaviourEnabled();
 
             // Game state.
-            gameState = GameState.CreateState<GameplayGameState>();
+            if (isInit) {
+                gameState = GameState.CreateState<GameplayGameState>();
+            }
 
             // Registration.
             GameStateManager.Instance.RegisterOverrideCallback(this);
@@ -97,18 +144,26 @@ namespace LudumDare54
 
             // Initialization.
             thisTransform = transform;
+
+            // Game state.
+            gameState = GameState.CreateState<GameplayGameState>();
+            fallDelegate = Fall;
+
+            isInit = true;
         }
 
         protected override void OnBehaviourDisabled() {
             base.OnBehaviourDisabled();
 
             // Game state.
-            gameState.RemoveState();
-            gameState = null;
+            if (isInit) {
+                gameState.RemoveState();
+                gameState = null;
+            }
 
             // Unregistration.
             GameStateManager.Instance.UnregisterOverrideCallback(this);
-            attributes.Register(this);
+            attributes.Unregister(this);
         }
 
         // -----------------------
@@ -116,6 +171,24 @@ namespace LudumDare54
         protected override void OnNonSingletonInstance() {
             Instance.LogErrorMessage($"Player Controller duplicate! Destroying object \"{name}\"");
             Destroy(gameObject);
+        }
+
+        // -------------------------------------------
+        // Editor
+        // -------------------------------------------
+
+        private void OnTriggerEnter2D(Collider2D _collision) {
+
+            if (_collision.TryGetComponent(out IPlayerTrigger _trigger)) {
+                _trigger.OnPlayerTriggerEnter(this);
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D _collision) {
+
+            if (_collision.TryGetComponent(out IPlayerTrigger _trigger)) {
+                _trigger.OnPlayerTriggerExit(this);
+            }
         }
 
         // -------------------------------------------
@@ -152,11 +225,25 @@ namespace LudumDare54
         }
         #endregion
 
+        // ----- Input ----- \\
+
         #region Input
         void IInputUpdate.Update() {
 
+            if (isLoading)
+                return;
+
+            PlayerInputs _inputs = InputSettings.I.PlayerInputs;
+
+            // Reload.
+            if (_inputs.ResetInput.Performed()) {
+
+                ReloadLevel();
+                return;
+            }
+
             // Reset state.
-            if (!isPlayable) {
+            if (!HasControl) {
 
                 velocity = Vector2.zero;
                 ResetSpeed();
@@ -170,7 +257,6 @@ namespace LudumDare54
             }
 
             // Movement.
-            PlayerInputs _inputs = InputSettings.I.PlayerInputs;
             velocity = new Vector2(_inputs.HorizontalAxis.GetAxis(), _inputs.ForwardAxis.GetAxis());
 
             #if DEVELOPMENT
@@ -182,8 +268,179 @@ namespace LudumDare54
 
             UpdateSpeed();
             Move(velocity);
+            UpdateGround();
         }
         #endregion
+
+        // ----- Special ----- \\
+
+        #region Animation
+        private const int MovementLayer = 0;
+        private const int SpecialLayer  = 1;
+        private const int OverrideLayer = 2;
+
+        private static readonly int idle_Hash = Animator.StringToHash("Idle");
+        private static readonly int move_Hash = Animator.StringToHash("Moving");
+        private static readonly int fire_Hash = Animator.StringToHash("Fire");
+        private static readonly int fall_Hash = Animator.StringToHash("Fall");
+
+        // -------------------------------------------
+        // States
+        // -------------------------------------------
+
+        public void PlayIdle() {
+
+            for (int i = 0; i < animator.layerCount; i++) {
+                animator.Play(idle_Hash, i, 0f);
+            }
+        }
+
+        public void PlayFire() {
+            animator.Play(fire_Hash, SpecialLayer, 0f);
+        }
+
+        public void PlayFall() {
+            animator.Play(fall_Hash, OverrideLayer, 0f);
+        }
+
+        // -------------------------------------------
+        // Parameters
+        // -------------------------------------------
+
+        public void PlayMove(bool isMoving) {
+            animator.SetBool(move_Hash, isMoving);
+        }
+        #endregion
+
+        #region Flip
+        [Button(SuperColor.HarvestGold)]
+        public void Flip(bool _isFacingRight) {
+
+            if (_isFacingRight == isFacingRight)
+                return;
+
+            Transform.Rotate(0f, 180f * _isFacingRight.Signf(), 0f);
+            isFacingRight = _isFacingRight;
+        }
+        #endregion
+
+        #region Ground
+        private Sequence fallSequence  = null;
+        private DelayHandler fallDelay = default;
+
+        // -----------------------
+
+        private void UpdateGround() {
+
+            // Ignore.
+            if (!isGrounded) {
+                return;
+            }
+
+            bool _isGrounded = ColliderOverlap(VariousSettings.I.GroundMask) != 0;
+            SetGrounded(_isGrounded);
+        }
+
+        private void SetGrounded(bool _isGrounded) {
+
+            if (_isGrounded == isGrounded)
+                return;
+
+            if (_isGrounded) {
+
+                CancelFall();
+
+            } else if (!fallDelay.IsValid) {
+
+                fallDelay = Delayer.Call(attributes.FallDelay, fallDelegate, false);
+            }
+        }
+
+        // -------------------------------------------
+        // Fall
+        // -------------------------------------------
+
+        private void Fall() {
+
+            fallDelay.Cancel();
+
+            if (!isGrounded)
+                return;
+
+            // State.
+            isGrounded = false;
+            PlayFall();
+
+            // Animation.
+            fallSequence = DOTween.Sequence();
+
+            float duration = attributes.FallDuration;
+
+            Tween _movement = Transform.DOBlendableMoveBy  (new Vector3(0f, attributes.FallMovementOffset, 0f), attributes.FallMovementDuration)  .SetEase(attributes.FallMovementEase);
+            Tween _rotation = Transform.DOBlendableRotateBy(new Vector3(0f, 0f, attributes.FallRotation),       duration, RotateMode.LocalAxisAdd).SetEase(attributes.FallRotationEase);
+            Tween _scale    = Transform.DOScale(0f, duration).SetEase(attributes.FallScaleEase);
+
+            fallSequence.Append(_movement);
+            fallSequence.Join(_rotation);
+            fallSequence.Join(_scale);
+
+            fallSequence.AppendInterval(attributes.FallRespawnDelay)
+                        .SetAutoKill(true).SetRecyclable(true).OnKill(OnKill);
+
+            // ----- Local Method ----- \\
+
+            void OnKill() {
+
+                fallSequence = null;
+                isGrounded   = true;
+
+                Transform.ResetLocal();
+
+                Respawn();
+            }
+        }
+
+        private void CancelFall() {
+
+            fallDelay.Cancel();
+
+            if (!isGrounded)
+                return;
+
+            if (fallSequence.IsActive()) {
+                fallSequence.Complete(true);
+            }
+        }
+        #endregion
+
+        #region Control
+        public void RemoveControl(bool _removeControl) {
+            removeControl = _removeControl;
+        }
+        #endregion
+
+        #region Reload
+        private void ReloadLevel() {
+
+            EnhancedSceneManager _sceneManager = EnhancedSceneManager.Instance;
+
+            if (_sceneManager.LoadingState != LoadingState.Inactive)
+                return;
+
+            LudumDareLoadSceneSettings _settings = new LudumDareLoadSceneSettings(LoadingMode.Black, LoadingChronos.FreezeOnFaded);
+            int _sceneCount = _sceneManager.LoadedBundleCount;
+
+            for (int i = 0; i < _sceneCount; i++) {
+
+                LoadSceneMode _mode = (i == 0) ? LoadSceneMode.Single : LoadSceneMode.Additive;
+                _sceneManager.LoadSceneBundle(_sceneManager.GetLoadedBundleAt(i), _mode, _settings);
+            }
+
+            isLoading = _sceneCount != 0;
+        }
+        #endregion
+
+        // ----- Velocity ----- \\
 
         #region Speed
         /// <summary>
@@ -225,6 +482,8 @@ namespace LudumDare54
         public virtual bool ResetSpeed() {
 
             speed = attributes.MoveSpeed.Reset(InstanceID);
+            PlayMove(false);
+
             return false;
         }
 
@@ -248,6 +507,11 @@ namespace LudumDare54
         #region Velocity
         public void Move(Vector2 _direction) {
 
+            if (!Mathm.ApproximatelyZero(_direction.x)) {
+                Flip(_direction.x > 0f);
+            }
+
+            PlayMove(!_direction.IsNull());
             ApplyVelocity(_direction.normalized * speed * DeltaTime);
         }
 
@@ -264,7 +528,9 @@ namespace LudumDare54
         }
         #endregion
 
-        #region Collision Calculs
+        // ----- Physics ----- \\
+
+        #region Collision
         private const int   CollisionSystemRecursivityCount = 3;
 
         private static readonly List<RaycastHit2D> hitBuffer = new List<RaycastHit2D>();
@@ -377,6 +643,10 @@ namespace LudumDare54
         /// </summary>
         public bool CastCollider(Vector2 _velocity, out RaycastHit2D _hit) {
 
+            contactFilter.layerMask     = attributes.ColliderMask;
+            contactFilter.useLayerMask  = true;
+            contactFilter.useTriggers   = false;
+
             bool _result = collider.Cast(_velocity, contactFilter, singleCastBuffer, _velocity.magnitude) > 0;
             _hit = singleCastBuffer[0];
 
@@ -387,6 +657,10 @@ namespace LudumDare54
         /// Performs a cast in a specific direction.
         /// </summary>
         public int CastCollider(Vector2 _velocity, RaycastHit2D[] _hitBuffer, out float _distance) {
+
+            contactFilter.layerMask     = attributes.ColliderMask;
+            contactFilter.useLayerMask  = true;
+            contactFilter.useTriggers   = false;
 
             _distance = _velocity.magnitude;
 
@@ -439,13 +713,22 @@ namespace LudumDare54
         // Overlap
         // -------------------------------------------
 
+
+        public int ColliderOverlap() {
+            return ColliderOverlap(attributes.ColliderMask);
+        }
+
+        public int TriggerOverlap() {
+            return TriggerOverlap(attributes.TriggerMask);
+        }
+
         /// <summary>
         /// Performs an overlap operation using this object physics collider.
         /// </summary>
         /// <returns>Total count of overlapping colliders.</returns>
-        public int ColliderOverlap() {
+        public int ColliderOverlap(int layer) {
 
-            contactFilter.layerMask     = attributes.ColliderMask;
+            contactFilter.layerMask     = layer;
             contactFilter.useLayerMask  = true;
             contactFilter.useTriggers   = false;
 
@@ -456,9 +739,9 @@ namespace LudumDare54
         /// Performs an overlap operation using this object trigger.
         /// </summary>
         /// <returns>Total count of overlapping triggers.</returns>
-        public int TriggerOverlap() {
+        public int TriggerOverlap(int layer) {
 
-            contactFilter.layerMask     = attributes.TriggerMask;
+            contactFilter.layerMask     = layer;
             contactFilter.useLayerMask  = true;
             contactFilter.useTriggers   = true;
 
@@ -558,9 +841,18 @@ namespace LudumDare54
                 SetRotation(transform.rotation);
             }
         }
-        #endregion        
+        #endregion
+
+        // ----- Utility ----- \\
 
         #region Utility
+        /// <summary>
+        /// Makes the player respawn.
+        /// </summary>
+        public void Respawn() {
+            TeleportTo(spawn, true, true);
+        }
+
         /// <summary>
         /// Teleports the player to a given position.
         /// </summary>
@@ -576,7 +868,7 @@ namespace LudumDare54
             SetPositionAndRotation(_position, false);
 
             if (_refreshPosition) {
-                //RefreshPosition();
+                RefreshPosition();
             }
         }
 
@@ -584,7 +876,12 @@ namespace LudumDare54
         /// Resets the current player state.
         /// </summary>
         public void ResetState() {
+
             ResetSpeed();
+            CancelFall();
+            PlayIdle();
+
+            isGrounded = true;
         }
         #endregion
 
