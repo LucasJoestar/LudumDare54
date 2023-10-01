@@ -12,12 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1045799212d0f3641b4ad9544965ea6e, type: 3}
   m_Name: DT_BuildSceneDatabase
   m_EditorClassIdentifier: 
-  sceneBundles: []
+  sceneBundles:
+  - {fileID: 11400000, guid: bed933626335d64479af33912bcbeb34, type: 2}
+  - {fileID: 11400000, guid: f03b9ab7fb3e4ec4fb91dd0d65eed043, type: 2}
+  - {fileID: 11400000, guid: 1f0f7795c47d80b4ebba81d2e6452f57, type: 2}
   buildSceneGUIDs:
   - 8c9cfa26abfee488c85f1582747f6a02
   - 7a06c721e58187f48a7ee16e8972ea43
   - 880632bf435fa7c498a7cdd3dc0c0672
-  coreSceneIndex: -1
+  coreSceneIndex: 1
   nonBuildScenes:
   - Name: SCN_TestSceneGrid
     GUID: 5753aa07446e25f4ba60a97bcedb5799
