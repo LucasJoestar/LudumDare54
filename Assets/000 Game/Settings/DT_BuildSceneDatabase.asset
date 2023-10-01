@@ -20,6 +20,10 @@ MonoBehaviour:
   - 7a06c721e58187f48a7ee16e8972ea43
   coreSceneIndex: 1
   nonBuildScenes:
+  - Name: SCN_Lucas
+    GUID: 880632bf435fa7c498a7cdd3dc0c0672
+  - Name: SCN_Yann
+    GUID: c863e4440ec306d428848555b2aa06a9
   - Name: URP2DSceneTemplate
     GUID: 2cda990e2423bbf4892e6590ba056729
   - Name: Basic

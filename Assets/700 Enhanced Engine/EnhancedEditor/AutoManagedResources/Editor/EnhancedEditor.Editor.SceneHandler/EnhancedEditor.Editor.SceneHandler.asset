@@ -17,6 +17,7 @@ MonoBehaviour:
     Scenes:
     - GUID: e026d555eae824f65922633f37a14385
     - GUID: 880632bf435fa7c498a7cdd3dc0c0672
+    - GUID: c863e4440ec306d428848555b2aa06a9
     - GUID: 5cae0d87369a2405eaa962b8d920b947
     - GUID: 2cda990e2423bbf4892e6590ba056729
   - Name: Game
