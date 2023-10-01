@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/000 Game/Scenes/SCN_Core.unity
     guid: 7a06c721e58187f48a7ee16e8972ea43
+  - enabled: 1
+    path: Assets/000 Game/Scenes/SCN_Lucas.unity
+    guid: 880632bf435fa7c498a7cdd3dc0c0672
   m_configObjects: {}

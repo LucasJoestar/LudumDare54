@@ -154,8 +154,10 @@ namespace LudumDare54.UI {
                 case LoadingMode.Default:
                 default:
 
+                    loadingScreen.sprite = defaultLoadingScreen;
+
                     cutsceneRender.enabled = false;
-                    loadingScreen.enabled = false;
+                    loadingScreen.enabled = true;
 
                     break;
             }

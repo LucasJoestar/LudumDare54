@@ -53,6 +53,7 @@ namespace LudumDare54 {
         [Enhanced, Required] public InputActionEnhancedAsset ActionInput        = null;
         [Enhanced, Required] public InputActionEnhancedAsset FireInput          = null;
         [Enhanced, Required] public InputActionEnhancedAsset Fire2Input         = null;
+        [Enhanced, Required] public InputActionEnhancedAsset ResetInput         = null;
         #endregion
     }
 

@@ -193,6 +193,10 @@ namespace EnhancedFramework.Core {
             get { return behaviour.Value; }
         }
 
+        public int LoadedBundleCount {
+            get { return loadedBundles.Count; }
+        }
+
         // -------------------------------------------
         // Events
         // -------------------------------------------
@@ -242,6 +246,16 @@ namespace EnhancedFramework.Core {
         protected override void OnInit() {
             base.OnInit();
 
+            // Get loaded bundles.
+            for (int i = 0; i < SceneManager.sceneCount; i++) {
+
+                Scene _scene = SceneManager.GetSceneAt(i);
+
+                if (!_scene.IsCoreScene() && SceneBundle.GetSceneBundle(_scene, out SceneBundle _bundle)) {
+                    loadedBundles.Add(_bundle);
+                }
+            }
+
             #if UNITY_EDITOR
             if (SceneManager.sceneCount == 1) {
                 // Load the first scene if only core is loaded.
@@ -280,10 +294,6 @@ namespace EnhancedFramework.Core {
             // ----- Local Methods ----- \\
 
             void LoadFirstScene() {
-                // Get this object scene bundle.
-                if (SceneBundle.GetSceneBundle(gameObject.scene, out SceneBundle _bundle)) {
-                    loadedBundles.Add(_bundle);
-                }
 
                 if (firstScene.IsValid()) {
                     Instance.LoadSceneBundle(firstScene, LoadSceneMode.Additive);
@@ -351,9 +361,9 @@ namespace EnhancedFramework.Core {
         #endregion
 
         #region Loading
-        private const float StartLoadDelay      = .2f;
-        private const float LoadBundleInterval  = .01f;
-        private const float LoadCompletionDelay = .25f;
+        private const float StartLoadDelay      = .001f;
+        private const float LoadBundleInterval  = .001f;
+        private const float LoadCompletionDelay = .02f;
 
         private readonly PairCollection<SceneBundle, LoadSceneMode> loadingBundles = new PairCollection<SceneBundle, LoadSceneMode>();
 
@@ -521,7 +531,9 @@ namespace EnhancedFramework.Core {
                 Behaviour.OnLoadBundle(_operation, i, loadingBundles.Count);
 
                 yield return _operation;
-                yield return _interval;
+
+                if ((i + 1) < loadingBundles.Count)
+                    yield return _interval;
 
                 loadedBundles.Add(_toLoad);
                 OnPostLoadBundle?.Invoke(_toLoad);
@@ -580,9 +592,9 @@ namespace EnhancedFramework.Core {
         #endregion
 
         #region Unloading
-        private const float StartUnloadDelay        = .1f;
-        private const float UnloadBundleInterval    = .01f;
-        private const float UnloadCompletionDelay   = .05f;
+        private const float StartUnloadDelay        = .01f;
+        private const float UnloadBundleInterval    = .001f;
+        private const float UnloadCompletionDelay   = 0f;
 
         private readonly PairCollection<SceneBundle, UnloadSceneOptions> unloadingBundles = new PairCollection<SceneBundle, UnloadSceneOptions>();
 
@@ -731,7 +743,9 @@ namespace EnhancedFramework.Core {
                 Behaviour.OnUnloadBundle(_operation, i, loadingBundles.Count);
 
                 yield return _operation;
-                yield return _interval;
+
+                if ((i + 1) < unloadingBundles.Count)
+                    yield return _interval;
 
                 loadedBundles.Remove(_bundle);
                 OnPostLoadBundle?.Invoke(_bundle);
@@ -804,6 +818,10 @@ namespace EnhancedFramework.Core {
 
             _settings = null;
             return false;
+        }
+
+        public SceneBundle GetLoadedBundleAt(int _index) {
+            return loadedBundles[_index];
         }
 
         /// <summary>

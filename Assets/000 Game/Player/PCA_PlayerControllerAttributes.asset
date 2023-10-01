@@ -71,3 +71,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   FireCooldown: 0.5
+  FallDelay: 0.1
+  FallDuration: 0.5
+  FallRespawnDelay: 1
+  FallMovementOffset: -0.5
+  FallMovementDuration: 0.2
+  FallMovementEase: 3
+  FallScaleEase: 3
+  FallRotation: 360
+  FallRotationEase: 3

@@ -55,7 +55,7 @@ MonoBehaviour:
   Tags:
     Tags: []
   lastModifiedBy: Lucas
-  lastModifiedDate: 30/09/2023 18:15:10
+  lastModifiedDate: 01/10/2023 01:49:02
   IsEditorPreview: 0
   isHeader: 0
   overrideHierarchyStyle: 0
@@ -298,11 +298,11 @@ MonoBehaviour:
     - rid: 7378761653245182000
       type: {class: LudumDareSceneManagerBehaviour, ns: LudumDare54.UI, asm: LudumDare54}
       data:
-        loadingMinDuration: {x: 0.5, y: 0.55}
+        loadingMinDuration: {x: 0, y: 0}
     - rid: 7378761653245182001
       type: {class: LudumDareLoadSceneSettings, ns: LudumDare54.UI, asm: LudumDare54}
       data:
-        Mode: 0
+        Mode: 9
         Chronos: 1
         Cutscene: {fileID: 0}
         Video: {fileID: 0}
