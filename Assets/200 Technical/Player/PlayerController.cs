@@ -231,7 +231,7 @@ namespace LudumDare54
         // ----- Input ----- \\
 
         #region Input
-        private Cooldown selectionCooldown = new Cooldown(.2f);
+        private Cooldown selectionCooldown = new Cooldown(.1f);
         private int lastSelection = 0;
 
         // -----------------------
@@ -262,7 +262,7 @@ namespace LudumDare54
             // Selection.
             int _increment = Mathf.Clamp(Mathf.RoundToInt(_inputs.SelectionAxis.GetAxis()), -1, 1);
 
-            if (!Mathm.ApproximatelyZero(_increment) && (_increment != lastSelection) && selectionCooldown.IsValid) {
+            if (!Mathm.ApproximatelyZero(_increment) && selectionCooldown.IsValid) {
 
                 InventoryManager.Instance.IncrementSelectedIndex(_increment);
                 selectionCooldown.Reload();

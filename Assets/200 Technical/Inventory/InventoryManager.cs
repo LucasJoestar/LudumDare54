@@ -34,6 +34,8 @@ namespace LudumDare54 {
     [DefaultExecutionOrder(999)]
     [AddComponentMenu(ProjectUtility.MenuPath + "Core/Inventory"), SelectionBase, DisallowMultipleComponent]
     public class InventoryManager : EnhancedSingleton<InventoryManager> {
+        public override UpdateRegistration UpdateRegistration => base.UpdateRegistration | UpdateRegistration.Init;
+
         #region Global Members
         [Section("Inventory")]
 
