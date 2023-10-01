@@ -1120,7 +1120,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2510555661579813190, guid: d635962d946f97143a64619ee0f4b213, type: 3}
       propertyPath: lastModifiedDate
-      value: 01/10/2023 10:53:41
+      value: 01/10/2023 14:01:51
+      objectReference: {fileID: 0}
+    - target: {fileID: 7858351466704019897, guid: d635962d946f97143a64619ee0f4b213, type: 3}
+      propertyPath: orthographic size
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7932544924023047141, guid: d635962d946f97143a64619ee0f4b213, type: 3}
       propertyPath: m_Name

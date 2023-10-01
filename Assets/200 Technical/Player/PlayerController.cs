@@ -45,6 +45,7 @@ namespace LudumDare54
         [Section("Player Controller")]
 
         [SerializeField, Enhanced, Required] private PlayerControllerAttributes attributes = null;
+        [SerializeField, Enhanced, Required] private Transform graph = null;
         [SerializeField, Enhanced, Required] private Transform spawn = null;
 
         [Space(5f)]
@@ -85,6 +86,7 @@ namespace LudumDare54
         private bool shouldBeRefreshed  = false;
 
         private Action fallDelegate = null;
+        private bool initFacingRight = true;
 
         // -----------------------
 
@@ -150,6 +152,7 @@ namespace LudumDare54
             fallDelegate = Fall;
 
             isInit = true;
+            initFacingRight = isFacingRight;
         }
 
         protected override void OnBehaviourDisabled() {
@@ -376,9 +379,9 @@ namespace LudumDare54
 
             float duration = attributes.FallDuration;
 
-            Tween _movement = Transform.DOBlendableMoveBy  (new Vector3(0f, attributes.FallMovementOffset, 0f), attributes.FallMovementDuration)  .SetEase(attributes.FallMovementEase);
-            Tween _rotation = Transform.DOBlendableRotateBy(new Vector3(0f, 0f, attributes.FallRotation),       duration, RotateMode.LocalAxisAdd).SetEase(attributes.FallRotationEase);
+            Tween _movement = Transform.DOBlendableMoveBy(new Vector3(0f, attributes.FallMovementOffset, 0f), attributes.FallMovementDuration).SetEase(attributes.FallMovementEase);
             Tween _scale    = Transform.DOScale(0f, duration).SetEase(attributes.FallScaleEase);
+            Tween _rotation = graph.DOBlendableRotateBy(new Vector3(0f, 0f, attributes.FallRotation), duration, RotateMode.LocalAxisAdd).SetEase(attributes.FallRotationEase);
 
             fallSequence.Append(_movement);
             fallSequence.Join(_rotation);
@@ -391,10 +394,17 @@ namespace LudumDare54
 
             void OnKill() {
 
+                if (!Application.isPlaying)
+                    return;
+
                 fallSequence = null;
                 isGrounded   = true;
 
                 Transform.ResetLocal();
+                graph.ResetLocal();
+
+                isFacingRight = true;
+                Flip(initFacingRight);
 
                 Respawn();
             }
