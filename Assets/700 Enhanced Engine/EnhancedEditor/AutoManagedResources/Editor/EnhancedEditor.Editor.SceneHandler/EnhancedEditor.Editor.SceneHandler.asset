@@ -20,14 +20,14 @@ MonoBehaviour:
     - GUID: 6a2ad353325ffe64983c28d69a8738f5
     - GUID: a351b59ca54a0bc4083c35844da13a61
     - GUID: 237744bb87a5d144cb97babf7faefa00
+    - GUID: 7a06c721e58187f48a7ee16e8972ea43
+    - GUID: 880632bf435fa7c498a7cdd3dc0c0672
     - GUID: 5753aa07446e25f4ba60a97bcedb5799
     - GUID: c863e4440ec306d428848555b2aa06a9
     - GUID: 5cae0d87369a2405eaa962b8d920b947
     - GUID: 2cda990e2423bbf4892e6590ba056729
   - Name: Game
     Scenes:
-    - GUID: 7a06c721e58187f48a7ee16e8972ea43
-    - GUID: 880632bf435fa7c498a7cdd3dc0c0672
     - GUID: 8c9cfa26abfee488c85f1582747f6a02
   bundleGroups:
   - Name: Default Group
