@@ -857,9 +857,61 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 632465072}
     m_Modifications:
+    - target: {fileID: 625549707021614636, guid: a8e588bf2d5fce647a35c2e171676a3a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 625549707021614636, guid: a8e588bf2d5fce647a35c2e171676a3a, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 625549707021614636, guid: a8e588bf2d5fce647a35c2e171676a3a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 625549707021614636, guid: a8e588bf2d5fce647a35c2e171676a3a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1331131670542187341, guid: a8e588bf2d5fce647a35c2e171676a3a, type: 3}
       propertyPath: m_Name
       value: PF_Canvas-UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430926710349810979, guid: a8e588bf2d5fce647a35c2e171676a3a, type: 3}
+      propertyPath: objectID.type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430926710349810979, guid: a8e588bf2d5fce647a35c2e171676a3a, type: 3}
+      propertyPath: objectID.objectID
+      value: 1430926710349810979
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430926710349810979, guid: a8e588bf2d5fce647a35c2e171676a3a, type: 3}
+      propertyPath: objectID.prefabID
+      value: 5221118550154556811
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430926710349810979, guid: a8e588bf2d5fce647a35c2e171676a3a, type: 3}
+      propertyPath: objectID.assetGUID
+      value: 7a06c721e58187f48a7ee16e8972ea43
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370060524501899418, guid: a8e588bf2d5fce647a35c2e171676a3a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370060524501899418, guid: a8e588bf2d5fce647a35c2e171676a3a, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370060524501899418, guid: a8e588bf2d5fce647a35c2e171676a3a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370060524501899418, guid: a8e588bf2d5fce647a35c2e171676a3a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3998450678861662539, guid: a8e588bf2d5fce647a35c2e171676a3a, type: 3}
+      propertyPath: lastModifiedDate
+      value: 01/10/2023 11:16:36
       objectReference: {fileID: 0}
     - target: {fileID: 4789970698003973969, guid: a8e588bf2d5fce647a35c2e171676a3a, type: 3}
       propertyPath: m_Pivot.x
@@ -973,6 +1025,22 @@ PrefabInstance:
       propertyPath: objectID.assetGUID
       value: 7a06c721e58187f48a7ee16e8972ea43
       objectReference: {fileID: 0}
+    - target: {fileID: 5382159105125699942, guid: a8e588bf2d5fce647a35c2e171676a3a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5382159105125699942, guid: a8e588bf2d5fce647a35c2e171676a3a, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5382159105125699942, guid: a8e588bf2d5fce647a35c2e171676a3a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5382159105125699942, guid: a8e588bf2d5fce647a35c2e171676a3a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5865875717787359191, guid: a8e588bf2d5fce647a35c2e171676a3a, type: 3}
       propertyPath: objectID.type
       value: 2
@@ -1052,7 +1120,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2510555661579813190, guid: d635962d946f97143a64619ee0f4b213, type: 3}
       propertyPath: lastModifiedDate
-      value: 30/09/2023 22:03:43
+      value: 01/10/2023 10:53:41
       objectReference: {fileID: 0}
     - target: {fileID: 7932544924023047141, guid: d635962d946f97143a64619ee0f4b213, type: 3}
       propertyPath: m_Name

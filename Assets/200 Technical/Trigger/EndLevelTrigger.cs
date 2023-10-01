@@ -61,6 +61,7 @@ namespace LudumDare54
                 isLoading = true;
             }
         }
+
         public void OnPlayerTriggerExit(PlayerController player) { }
         #endregion
     }
