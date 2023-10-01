@@ -22,6 +22,10 @@ MonoBehaviour:
   - 880632bf435fa7c498a7cdd3dc0c0672
   coreSceneIndex: 1
   nonBuildScenes:
+  - Name: SCN_TestSceneGrid
+    GUID: 5753aa07446e25f4ba60a97bcedb5799
+  - Name: SCN_Yann
+    GUID: c863e4440ec306d428848555b2aa06a9
   - Name: DOTweenAnimation_Advanced
     GUID: a5f7a56d339da84449899ecf95fbe33d
   - Name: DOTweenAnimation_Basics

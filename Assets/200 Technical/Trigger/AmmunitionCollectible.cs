@@ -21,15 +21,26 @@ namespace LudumDare54 {
         [Section("Ammo Collectible")]
 
         [SerializeField, Enhanced, Required] private Ammunition ammunition = null;
-        [SerializeField, Enhanced, Range(0f, 25f)] private int amount      = 1;
+        [SerializeField, Enhanced, Required] private Transform root        = null;
 
         [Space(10f)]
 
+        [SerializeField, Enhanced, Range(0f, 25f)] private int amount      = 1;
         [SerializeField] private bool isAnimated = false;
 
         [Space(10f), HorizontalLine(SuperColor.Grey, 1f), Space(10f)]
 
         [SerializeField, Enhanced, Range(0f, 10f)] private float animDuration = 1f;
+
+        [Space(5f)]
+
+        [SerializeField, Enhanced, Range(0f, 2f)] private Vector3 movement = new Vector3(0f, .5f, 0f);
+        [SerializeField, Enhanced, Range(0f, 2f)] private AnimationCurve movementCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
+
+        [Space(5f)]
+
+        [SerializeField, Enhanced, Range(0f, 2f)] private Vector3 scale = new Vector3(.9f, 1.1f, 1f);
+        [SerializeField, Enhanced, Range(0f, 2f)] private AnimationCurve scaleCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
         #endregion
 
         #region Enhanced Behaviour
@@ -59,12 +70,17 @@ namespace LudumDare54 {
             if (idleSequence.IsActive())
                 return;
 
-            position = transform.position;
+            if (position == Vector3.zero) {
+                position = transform.position;
+            } else {
+                transform.position = position;
+            }
 
             idleSequence = DOTween.Sequence();
+            float duration = animDuration;
 
-            Tween _movement = null;
-            Tween _scale    = null;
+            Tween _movement = root.DOBlendableMoveBy(movement, duration).SetEase(movementCurve);
+            Tween _scale    = root.DOScale(scale, duration).SetEase(scaleCurve);
 
             idleSequence.Append(_movement);
             idleSequence.Append(_scale);
@@ -84,17 +100,22 @@ namespace LudumDare54 {
                 return;
 
             idleSequence.Kill();
-            transform.position = position;
         }
         #endregion
 
         #region Trigger
-        private DelayHandler loadDelay = default;
-        private bool isLoading = false;
+        private bool isCollected = false;
 
         // -----------------------
 
-        public void OnPlayerTriggerEnter(PlayerController player) { }
+        public void OnPlayerTriggerEnter(PlayerController player) {
+
+            if (isCollected)
+                return;
+
+            InventoryManager.Instance.AddAmmunition(ammunition, amount);
+            isCollected = true;
+        }
 
         public void OnPlayerTriggerExit(PlayerController player) { }
         #endregion
