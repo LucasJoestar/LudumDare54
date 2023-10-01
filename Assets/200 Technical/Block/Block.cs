@@ -4,24 +4,17 @@
 //
 // ============================================================================ //
 
-using DG.Tweening;
 using EnhancedEditor;
 using EnhancedFramework.Core;
 using UnityEngine;
 
-using Min = EnhancedEditor.MinAttribute;
+using Min   = EnhancedEditor.MinAttribute;
 using Range = EnhancedEditor.RangeAttribute;
 
 namespace LudumDare54 {
-    public class Block : MonoBehaviour {
-        // Start is called before the first frame update
-        void Start() {
+    public class Block : EnhancedBehaviour {
+        #region Global Members
 
-        }
-
-        // Update is called once per frame
-        void Update() {
-
-        }
+        #endregion
     }
 }
