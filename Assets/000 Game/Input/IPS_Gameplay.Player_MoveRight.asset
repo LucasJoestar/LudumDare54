@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c43c75ba9c2c6b4ebe11bc8f613f3e9, type: 3}
+  m_Name: IPS_Gameplay.Player_MoveRight
+  m_EditorClassIdentifier: 
+  objectID:
+    type: 3
+    assetGUID: bcc3662dcd354d348961f1c3b773687e
+    objectID: 11400000
+    prefabID: 0
+  enableOnInit: 0
+  isPaused: 0
+  isOrphan: 0
+  map: {fileID: 11400000, guid: 6447e5de12285504eb769cfdc6a21566, type: 2}
+  input:
+    m_Name: MoveRight
+    m_Type: 0
+    m_ExpectedControlType: Button
+    m_Id: c8d49d28-94e3-41d5-ac59-12df2d2c9c3d
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: -1

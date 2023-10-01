@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f707951cc6c2e4c489eb4e82434806fb, type: 3}
+  m_Name: SCB_Sample
+  m_EditorClassIdentifier: 
+  Scenes:
+  - guid: 8c9cfa26abfee488c85f1582747f6a02
+  activeSceneIndex: 0
+  comment: 
+  Behaviour:
+    name: LudumDare-54
+    type:
+      typeName: LudumDare54.UI.LudumDareSceneBundleBehaviour, LudumDare54
+      constraints: 0
+      interfaces: []
+    value:
+      rid: 7378761660146122759
+    doFullCopy: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 7378761660146122759
+      type: {class: LudumDareSceneBundleBehaviour, ns: LudumDare54.UI, asm: LudumDare54}
+      data:
+        NextScene: {fileID: 11400000}
+        LoadingScreen: {fileID: 21300000, guid: 47a69ff3cba25ff49930a910c4e8c407, type: 3}

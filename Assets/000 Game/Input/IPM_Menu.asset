@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b06b06ecd9535eb46ba8be57c25ee88a, type: 3}
+  m_Name: IPM_Menu
+  m_EditorClassIdentifier: 
+  objectID:
+    type: 0
+    assetGUID: 
+    objectID: 0
+    prefabID: 0
+  enableOnInit: 0
+  map:
+    m_Name: Menu
+    m_Id: 2669243f-ef80-4bf3-80ed-c3b69ab0a514
+    m_Asset: {fileID: -944628639613478452, guid: 92f365d0f7c77484baf8199bfde52af9, type: 3}
+    m_Actions:
+    - m_Name: Pause
+      m_Type: 1
+      m_ExpectedControlType: Button
+      m_Id: cd5db3bc-e77b-4557-a491-338090de98f9
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Bindings:
+    - m_Name: 
+      m_Id: c005d65c-1e5b-4e86-a2a4-00347d2dc7f5
+      m_Path: <Gamepad>/start
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: Controller
+      m_Action: Pause
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 666ebef6-185c-484e-89ae-5b06f83e2795
+      m_Path: <Gamepad>/select
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: Controller
+      m_Action: Pause
+      m_Flags: 0
+    - m_Name: 
+      m_Id: d19b73a4-a5b4-4476-8e06-7a5a8ca518cf
+      m_Path: <Keyboard>/escape
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: Keyboard
+      m_Action: Pause
+      m_Flags: 0

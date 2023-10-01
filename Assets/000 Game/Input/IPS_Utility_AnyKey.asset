@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c43c75ba9c2c6b4ebe11bc8f613f3e9, type: 3}
+  m_Name: IPS_Utility_AnyKey
+  m_EditorClassIdentifier: 
+  objectID:
+    type: 3
+    assetGUID: 9351c4a162ef652429c1e3c53680628b
+    objectID: 11400000
+    prefabID: 0
+  enableOnInit: 0
+  isPaused: 0
+  isOrphan: 0
+  map: {fileID: 11400000, guid: 6e485dc41797b6b47991e139076faa99, type: 2}
+  input:
+    m_Name: AnyKey
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: 6f2d9a7d-fde2-469e-b505-5ee19a3f8bfe
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0

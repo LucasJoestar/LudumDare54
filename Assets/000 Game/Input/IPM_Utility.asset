@@ -1,0 +1,138 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b06b06ecd9535eb46ba8be57c25ee88a, type: 3}
+  m_Name: IPM_Utility
+  m_EditorClassIdentifier: 
+  objectID:
+    type: 0
+    assetGUID: 
+    objectID: 0
+    prefabID: 0
+  enableOnInit: 0
+  map:
+    m_Name: Utility
+    m_Id: afa59505-8fea-4877-83ee-980bafda5e60
+    m_Asset: {fileID: -944628639613478452, guid: 92f365d0f7c77484baf8199bfde52af9, type: 3}
+    m_Actions:
+    - m_Name: Skip
+      m_Type: 1
+      m_ExpectedControlType: Button
+      m_Id: 1a75c2e3-3f13-4a36-a664-37fcf8461f33
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    - m_Name: Exit
+      m_Type: 1
+      m_ExpectedControlType: Button
+      m_Id: 51c32ca5-c06f-460c-aa84-260a87bec23f
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    - m_Name: AnyKey
+      m_Type: 1
+      m_ExpectedControlType: Button
+      m_Id: 6f2d9a7d-fde2-469e-b505-5ee19a3f8bfe
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    - m_Name: FreeCamera
+      m_Type: 1
+      m_ExpectedControlType: Button
+      m_Id: 5fc93269-3fde-4d2f-82e9-a0e077c59689
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Bindings:
+    - m_Name: 
+      m_Id: e86606df-cb76-4d26-b920-e7d344c6fb3b
+      m_Path: <Gamepad>/start
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: Controller
+      m_Action: Skip
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 19a8c344-51df-427f-a0b1-08b4388e9e56
+      m_Path: <Keyboard>/escape
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: Keyboard
+      m_Action: Skip
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 08ec63c0-be62-4fa8-b8b8-b9c73c775923
+      m_Path: <Gamepad>/start
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: Controller
+      m_Action: AnyKey
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 909e03b5-c248-4eae-aa95-52767ec8f5a4
+      m_Path: <Keyboard>/anyKey
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: Keyboard
+      m_Action: AnyKey
+      m_Flags: 0
+    - m_Name: 
+      m_Id: dc4e8eb5-30bc-48e9-8f5f-76e02c0335b8
+      m_Path: <Keyboard>/f8
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: Keyboard
+      m_Action: FreeCamera
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 4e4c1932-ac9b-4657-aadc-7b05c6ee3a0c
+      m_Path: <Gamepad>/start
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: Controller
+      m_Action: Exit
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 9a8729a9-2c79-4474-a78c-19ec69815c78
+      m_Path: <Gamepad>/buttonNorth
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: Controller
+      m_Action: Exit
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 202fb9f3-e948-4aad-abdc-98028cd49ba2
+      m_Path: <Gamepad>/buttonEast
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: Controller
+      m_Action: Exit
+      m_Flags: 0
+    - m_Name: 
+      m_Id: fd4bbfa7-ae04-4e03-af12-9c3b88e310ba
+      m_Path: <Keyboard>/escape
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: Keyboard
+      m_Action: Exit
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 06c8db68-5f50-4072-a8f5-b9c40bde7ef4
+      m_Path: <Keyboard>/tab
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: Keyboard
+      m_Action: Exit
+      m_Flags: 0

@@ -61,7 +61,7 @@ MonoBehaviour:
       data:
         GUID: -380957182
         CoreScene:
-          guid: 
+          guid: 7a06c721e58187f48a7ee16e8972ea43
         IsCoreSceneEnabled: 1
     - rid: 6
       type: {class: AudioEnhancedSettings, ns: EnhancedFramework.Editor, asm: EnhancedFramework.Editor}

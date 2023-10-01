@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bc77cabca10ec84ca04476b11ca88aa, type: 3}
+  m_Name: PCA_PlayerControllerAttributes
+  m_EditorClassIdentifier: 
+  MoveSpeed:
+    Range: {x: 3, y: 5}
+    Duration: 0.5
+    Curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    DecreaseDuration: 0.1
+    DecreaseCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: -2.6651976
+        outSlope: -2.6651976
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.04159132
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: -0.09733172
+        outSlope: -0.09733172
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.12115735
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  ColliderMask:
+    serializedVersion: 2
+    m_Bits: 128
+  TriggerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  FireCooldown: 0.5
+  FallDelay: 0.1
+  FallDuration: 0.5
+  FallRespawnDelay: 1
+  FallMovementOffset: -0.5
+  FallMovementDuration: 0.2
+  FallMovementEase: 3
+  FallScaleEase: 3
+  FallRotation: 360
+  FallRotationEase: 3

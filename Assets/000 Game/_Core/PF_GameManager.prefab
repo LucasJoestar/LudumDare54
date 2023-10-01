@@ -1,0 +1,366 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3478151926051436789
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8418476460006401243}
+  - component: {fileID: 6052035158786476595}
+  - component: {fileID: 4060736086178568088}
+  - component: {fileID: 2134773249930610784}
+  - component: {fileID: 4298270601932514029}
+  - component: {fileID: 4930010690935551935}
+  - component: {fileID: 7749808053234120843}
+  - component: {fileID: 2978633508364426110}
+  - component: {fileID: 8892483728097718864}
+  m_Layer: 0
+  m_Name: PF_GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8418476460006401243
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3478151926051436789}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6052035158786476595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3478151926051436789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7754e74e0a5c0f499a1b07bd19fdf18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  comment: 
+  Tags:
+    Tags: []
+  lastModifiedBy: Lucas
+  lastModifiedDate: 01/10/2023 01:49:02
+  IsEditorPreview: 0
+  isHeader: 0
+  overrideHierarchyStyle: 0
+  hierarchyStyle:
+    Icon: {fileID: 0}
+    IconColor: {r: 1, g: 1, b: 1, a: 1}
+    UseIconColor: 0
+    LabelColor: {r: 1, g: 1, b: 1, a: 1}
+    UseLabelColor: 0
+    Background:
+      serializedVersion: 2
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_ColorSpace: -1
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+    UseBackground: 0
+    HeaderColor: {r: 1, g: 1, b: 1, a: 1}
+    UseHeaderColor: 0
+    HeaderBackground:
+      serializedVersion: 2
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_ColorSpace: -1
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+    OverrideHeaderBackground: 0
+--- !u!114 &4060736086178568088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3478151926051436789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bdd6f531328cf443aba6d8b0f6ee8ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chronos: 1
+  objectID:
+    type: 0
+    assetGUID: 
+    objectID: 0
+    prefabID: 0
+  settings: {fileID: 11400000, guid: 77d9aed81c419b849bd7c1ba96c0e1f4, type: 2}
+  seed: 0
+--- !u!114 &2134773249930610784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3478151926051436789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a58b6dc40b2caa48b93720743005059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chronos: 1
+  objectID:
+    type: 0
+    assetGUID: 
+    objectID: 0
+    prefabID: 0
+  suspendOnLoading: 1
+--- !u!114 &4298270601932514029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3478151926051436789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dc80cd3b53b2184190b935c4a889be1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chronos: 1
+  objectID:
+    type: 0
+    assetGUID: 
+    objectID: 0
+    prefabID: 0
+  defaultStateType:
+    typeName: EnhancedFramework.Core.GameStates.DefaultGameState, EnhancedFramework.Core
+    constraints: 0
+    interfaces: []
+  stateOverride:
+    name: LudumDare-54
+    type:
+      typeName: LudumDare54.GameStates.LudumDareGameStateOverride, LudumDare54
+      constraints: 0
+      interfaces: []
+    value:
+      rid: 7378761653245182002
+    doFullCopy: 1
+  <CurrentState>k__BackingField:
+    rid: -2
+  states:
+    collection: []
+    defaultValue:
+      Value:
+        rid: -2
+    value:
+      Value:
+        rid: -2
+    performStableSorting: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 7378761653245182002
+      type: {class: LudumDareGameStateOverride, ns: LudumDare54.GameStates, asm: LudumDare54}
+      data:
+        IsCursorVisible: 1
+        CursorLockMode: 0
+        IsLoading: 0
+        IsUnloading: 0
+        IsPaused: 0
+        FreezeChronos: 0
+        IsQuitting: 0
+        HasControl: 1
+        CanPause: 1
+        ShowBlackBars: 0
+        IsCinematic: 0
+        IsDebug: 0
+--- !u!114 &4930010690935551935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3478151926051436789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 619d301782a22de419768f7f8b3032b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chronos: 1
+  objectID:
+    type: 0
+    assetGUID: 
+    objectID: 0
+    prefabID: 0
+  loadingStateType:
+    typeName: LudumDare54.GameStates.LoadingGameState, LudumDare54
+    constraints: 0
+    interfaces: []
+  unloadingStateType:
+    typeName: LudumDare54.GameStates.UnloadingGameState, LudumDare54
+    constraints: 0
+    interfaces: []
+  unloadResources: 0
+  firstScene: {fileID: 11400000, guid: 1f0f7795c47d80b4ebba81d2e6452f57, type: 2}
+  loadingState: 0
+  unloadingState: 0
+  loadedBundles:
+    collection: []
+  LoadingSettings:
+    name: LudumDare-54
+    type:
+      typeName: LudumDare54.UI.LudumDareLoadSceneSettings, LudumDare54
+      constraints: 2
+      interfaces: []
+    value:
+      rid: 7378761653245182001
+    doFullCopy: 1
+  UnloadingSettings:
+    name: <Default>
+    type:
+      typeName: EnhancedFramework.Core.UnloadSceneSettings, EnhancedFramework.Core
+      constraints: 2
+      interfaces: []
+    value:
+      rid: 7378761653245181991
+    doFullCopy: 1
+  behaviour:
+    name: LudumDare-54
+    type:
+      typeName: LudumDare54.UI.LudumDareSceneManagerBehaviour, LudumDare54
+      constraints: 0
+      interfaces: []
+    value:
+      rid: 7378761653245182000
+    doFullCopy: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 7378761653245181991
+      type: {class: UnloadSceneSettings, ns: EnhancedFramework.Core, asm: EnhancedFramework.Core}
+      data: 
+    - rid: 7378761653245182000
+      type: {class: LudumDareSceneManagerBehaviour, ns: LudumDare54.UI, asm: LudumDare54}
+      data:
+        loadingMinDuration: {x: 0, y: 0}
+    - rid: 7378761653245182001
+      type: {class: LudumDareLoadSceneSettings, ns: LudumDare54.UI, asm: LudumDare54}
+      data:
+        Mode: 9
+        Chronos: 1
+        Cutscene: {fileID: 0}
+        Video: {fileID: 0}
+        Delay: 0
+--- !u!114 &7749808053234120843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3478151926051436789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2508feea2c5d4af40b91fcdfead8f1ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2978633508364426110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3478151926051436789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12cd213833a6e4942b2d003536bb2fb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chronos: 1
+  objectID:
+    type: 0
+    assetGUID: 
+    objectID: 0
+    prefabID: 0
+  references: []
+--- !u!114 &8892483728097718864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3478151926051436789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fa28ed210358274fbc54f406ed580b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chronos: 1
+  objectID:
+    type: 0
+    assetGUID: 
+    objectID: 0
+    prefabID: 0
+  pauseStateType:
+    typeName: LudumDare54.GameStates.PauseChronosGameState, LudumDare54
+    constraints: 0
+    interfaces: []
+  usePauseInterface: 0
+  pauseInterface: {fileID: 0}
+  gameChronos: 1
+  coefficient: 1
