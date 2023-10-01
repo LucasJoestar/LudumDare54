@@ -54,7 +54,7 @@ MonoBehaviour:
   Tags:
     Tags: []
   lastModifiedBy: Lucas
-  lastModifiedDate: 30/09/2023 17:29:15
+  lastModifiedDate: 01/10/2023 15:53:46
   IsEditorPreview: 0
   isHeader: 0
   overrideHierarchyStyle: 0
@@ -163,11 +163,11 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 10
-  m_Depth: -1
+  orthographic size: 7
+  m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 991
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

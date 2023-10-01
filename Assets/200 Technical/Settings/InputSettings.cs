@@ -47,6 +47,7 @@ namespace LudumDare54 {
         #region Content
         [Enhanced, Required] public AxisInputActionEnhancedAsset HorizontalAxis = null;
         [Enhanced, Required] public AxisInputActionEnhancedAsset ForwardAxis    = null;
+        [Enhanced, Required] public InputActionEnhancedAsset SelectionAxis      = null;
 
         [Space(5f)]
 

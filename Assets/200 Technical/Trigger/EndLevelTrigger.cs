@@ -41,12 +41,12 @@ namespace LudumDare54
 
         // -----------------------
 
-        public void OnPlayerTriggerEnter(PlayerController player) {
+        public void OnPlayerTriggerEnter(PlayerController _player) {
 
             if (isLoading || loadDelay.IsValid)
                 return;
 
-            player.RemoveControl(true);
+            _player.RemoveControl(true);
             loadDelay = Delayer.Call(delay, Load, true);
 
             // ----- Local Method ----- \\
@@ -62,7 +62,7 @@ namespace LudumDare54
             }
         }
 
-        public void OnPlayerTriggerExit(PlayerController player) { }
+        public void OnPlayerTriggerExit(PlayerController _player) { }
         #endregion
     }
 }

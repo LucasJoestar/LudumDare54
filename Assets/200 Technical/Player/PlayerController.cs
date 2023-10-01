@@ -27,8 +27,8 @@ namespace LudumDare54
     /// </summary>
     public interface IPlayerTrigger {
         #region Content
-        void OnPlayerTriggerEnter(PlayerController player);
-        void OnPlayerTriggerExit(PlayerController player);
+        void OnPlayerTriggerEnter(PlayerController _player);
+        void OnPlayerTriggerExit(PlayerController _player);
         #endregion
     }
 
@@ -231,6 +231,11 @@ namespace LudumDare54
         // ----- Input ----- \\
 
         #region Input
+        private Cooldown selectionCooldown = new Cooldown(.2f);
+        private int lastSelection = 0;
+
+        // -----------------------
+
         void IInputUpdate.Update() {
 
             if (isLoading)
@@ -253,6 +258,17 @@ namespace LudumDare54
 
                 return;
             }
+
+            // Selection.
+            int _increment = Mathf.Clamp(Mathf.RoundToInt(_inputs.SelectionAxis.GetAxis()), -1, 1);
+
+            if (!Mathm.ApproximatelyZero(_increment) && (_increment != lastSelection) && selectionCooldown.IsValid) {
+
+                InventoryManager.Instance.IncrementSelectedIndex(_increment);
+                selectionCooldown.Reload();
+            }
+
+            lastSelection = _increment;
 
             // Position refresh.
             if (shouldBeRefreshed || (transform.position != lastPosition)) {
@@ -421,6 +437,10 @@ namespace LudumDare54
                 fallSequence.Complete(true);
             }
         }
+        #endregion
+
+        #region Fire
+
         #endregion
 
         #region Control

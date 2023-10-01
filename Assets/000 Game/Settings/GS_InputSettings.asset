@@ -30,6 +30,7 @@ MonoBehaviour:
   PlayerInputs:
     HorizontalAxis: {fileID: 11400000, guid: e3b0940ef2398754da41c7118e7a9266, type: 2}
     ForwardAxis: {fileID: 11400000, guid: 2159216bdfaa2004d947b1986b6813fe, type: 2}
+    SelectionAxis: {fileID: 11400000, guid: d82ead8c80a203349b8d6d5bc9edb0a5, type: 2}
     ActionInput: {fileID: 11400000, guid: 51f4462df45c2c84f9e09f37fc9e5792, type: 2}
     FireInput: {fileID: 11400000, guid: 1e056b98acc38154699383a62931786a, type: 2}
     Fire2Input: {fileID: 11400000, guid: 78cad628dab98b54c8298087b36103a1, type: 2}

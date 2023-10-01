@@ -134,8 +134,8 @@ namespace EnhancedFramework.Core {
         #endregion
 
         #region Pool
-        private ObjectPool<EnhancedParticleSystemPlayer> particlePool = new ObjectPool<EnhancedParticleSystemPlayer>(0);
-        private bool isInitialize = false;
+        [NonSerialized] private ObjectPool<EnhancedParticleSystemPlayer> particlePool = new ObjectPool<EnhancedParticleSystemPlayer>(0);
+        [NonSerialized] private bool isInitialize = false;
 
         // -----------------------
 

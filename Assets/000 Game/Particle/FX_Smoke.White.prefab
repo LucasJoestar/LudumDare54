@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5653288465246633425}
   - component: {fileID: 8709552813858415534}
   - component: {fileID: 8937773156406090545}
+  - component: {fileID: 8621901445502108045}
   m_Layer: 0
   m_Name: FX_Smoke.White
   m_TagString: Untagged
@@ -50,7 +51,7 @@ MonoBehaviour:
   Tags:
     Tags: []
   lastModifiedBy: Lucas
-  lastModifiedDate: 01/10/2023 13:27:26
+  lastModifiedDate: 01/10/2023 15:43:33
   IsEditorPreview: 0
   isHeader: 0
   overrideHierarchyStyle: 0
@@ -213,7 +214,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -450,7 +451,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 0.25
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4924,3 +4925,30 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &8621901445502108045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7018445772933979187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2af516f14c4d48e4d9fbf14a97fbb9ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chronos: 1
+  objectID:
+    type: 0
+    assetGUID: 
+    objectID: 0
+    prefabID: 0
+  particleAsset: {fileID: 11400000, guid: 8fe181727545ba54290268354d4fd7b4, type: 2}
+  playAfterLoading: 0
+  state: 0
+  playID: 0
+  followTransform: 0
+  referenceTransform: {fileID: 0}
+  time: 0
+  duration: 0
+  isPlaying: 0

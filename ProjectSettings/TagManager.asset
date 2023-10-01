@@ -14,7 +14,7 @@ TagManager:
   - Ground
   - Wall
   - Player
-  - 
+  - Interact
   - 
   - 
   - 
@@ -52,4 +52,7 @@ TagManager:
     locked: 0
   - name: FX
     uniqueID: 629219271
+    locked: 0
+  - name: UI
+    uniqueID: 2668814885
     locked: 0

@@ -23,3 +23,16 @@ MonoBehaviour:
   WallMask:
     serializedVersion: 2
     m_Bits: 128
+  UI_ActivateScaleDuration: 0.5
+  UI_ActivateScaleEase: 27
+  UI_DeactivateScaleDuration: 0.5
+  UI_DeactivateScaleEase: 26
+  UI_SelectScale: 1.5
+  UI_SelectScaleDuration: 0.25
+  UI_SelectScaleEase: 26
+  UI_UnselectScaleDuration: 0.25
+  UI_UnselectScaleEase: 27
+  UI_SelectFont: {fileID: 2100000, guid: 0991a8858c79aee4ba740f99e6e3de38, type: 2}
+  UI_SelectColor: {r: 0.8679245, g: 0.59362763, b: 0.8506627, a: 1}
+  UI_UnselectFont: {fileID: 2100000, guid: 10cfb96397b3d4348b58bd585d33a479, type: 2}
+  UI_UnselectColor: {r: 0, g: 0, b: 0, a: 1}
