@@ -54,6 +54,11 @@ namespace LudumDare54 {
 
         [Space(10f), HorizontalLine(SuperColor.Grey, 1f), Space(10f)]
 
+        [Enhanced, Range(0f, 5f)] public float JumpHeight = 1.5f;
+        [Enhanced, Range(0f, 1f)] public float JumpSpeed = .12f;
+
+        [Space(10f), HorizontalLine(SuperColor.Grey, 1f), Space(10f)]
+
         [Enhanced, Range(0f, 5f)] public float FallDelay        = .5f;
         [Enhanced, Range(0f, 5f)] public float FallDuration     = .5f;
         [Enhanced, Range(0f, 5f)] public float FallRespawnDelay = 1f;

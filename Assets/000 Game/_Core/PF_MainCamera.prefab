@@ -54,7 +54,7 @@ MonoBehaviour:
   Tags:
     Tags: []
   lastModifiedBy: Lucas
-  lastModifiedDate: 01/10/2023 15:53:46
+  lastModifiedDate: 02/10/2023 23:16:53
   IsEditorPreview: 0
   isHeader: 0
   overrideHierarchyStyle: 0
@@ -167,7 +167,7 @@ Camera:
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 991
+    m_Bits: 983
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

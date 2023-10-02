@@ -49,7 +49,6 @@ namespace LudumDare54
 
         [SerializeField, Enhanced, Required] private PlayerControllerAttributes attributes = null;
         [SerializeField, Enhanced, Required] private Transform graph = null;
-        [SerializeField, Enhanced, Required] private Transform spawn = null;
 
         [Space(5f)]
 
@@ -79,6 +78,7 @@ namespace LudumDare54
         [SerializeField, Enhanced, ReadOnly] private bool isInAnimation     = false;
         [SerializeField, Enhanced, ReadOnly] private bool isPreparingSpell  = false;
         [SerializeField, Enhanced, ReadOnly] private bool isSpawning        = false;
+        [SerializeField, Enhanced, ReadOnly] private bool isJumping         = false;
 
         [Space(5f)]
 
@@ -89,6 +89,7 @@ namespace LudumDare54
 
         [Tooltip("Last recorded position of this object")]
         [SerializeField, Enhanced, ReadOnly] protected Vector3 lastPosition = new Vector3();
+        [SerializeField, Enhanced, ReadOnly] protected Vector2 lastMovement = new Vector2();
 
         // -----------------------
 
@@ -124,7 +125,7 @@ namespace LudumDare54
         }
 
         public bool HasControl {
-            get { return isPlayable && isGrounded && !isLoading && !removeControl && !IsInAnimation && !isSpawning; }
+            get { return isPlayable && isGrounded && !isLoading && !removeControl && !IsInAnimation && !isSpawning && !isJumping; }
         }
 
         public bool IsInAnimation {
@@ -197,14 +198,7 @@ namespace LudumDare54
             GameStateManager.Instance.UnregisterOverrideCallback(this);
             attributes.Unregister(this);
 
-            fallDelay.Cancel();
-
-            CancelFall();
-            CompleteSpawn();
-        }
-
-        private void OnDestroy() {
-            
+            ResetState();
         }
 
         // -----------------------
@@ -283,8 +277,15 @@ namespace LudumDare54
             // Reload.
             if (_inputs.ResetInput.Performed()) {
 
-                ReloadLevel();
+                LevelManager.Instance.ReloadLevel();
                 return;
+            }
+
+            // Movement.
+            velocity = new Vector2(_inputs.HorizontalAxis.GetAxis(), _inputs.ForwardAxis.GetAxis());
+
+            if (!velocity.IsNull()) {
+                lastMovement = velocity;
             }
 
             // Preparing spell.
@@ -336,9 +337,6 @@ namespace LudumDare54
                 RefreshPosition();
             }
 
-            // Movement.
-            velocity = new Vector2(_inputs.HorizontalAxis.GetAxis(), _inputs.ForwardAxis.GetAxis());
-
             #if DEVELOPMENT
             // Debug.
             if (debugVelocity) {
@@ -346,6 +344,7 @@ namespace LudumDare54
             }
             #endif
 
+            // Velocity.
             UpdateSpeed();
             Move(velocity);
             UpdateGround();
@@ -365,6 +364,7 @@ namespace LudumDare54
         private static readonly int fall_Hash       = Animator.StringToHash("Fall");
         private static readonly int spawn_Hash      = Animator.StringToHash("Spawn");
         private static readonly int despawn_Hash    = Animator.StringToHash("Despawn");
+        private static readonly int jump_Hash       = Animator.StringToHash("Jump");
 
         private static readonly int prepareSpell_Hash = Animator.StringToHash("Prepare Spell");
         private static readonly int fireSpell_Hash    = Animator.StringToHash("Fire Spell");
@@ -398,6 +398,10 @@ namespace LudumDare54
             animator.Play(fall_Hash, OverrideLayer, 0f);
         }
 
+        public void PlayJump() {
+            animator.Play(jump_Hash, OverrideLayer, 0f);
+        }
+
         public void PlaySpawn() {
             animator.Play(spawn_Hash, OverrideLayer, 0f);
         }
@@ -424,6 +428,71 @@ namespace LudumDare54
 
             Transform.Rotate(0f, 180f * _isFacingRight.Signf(), 0f);
             isFacingRight = _isFacingRight;
+        }
+        #endregion
+
+        #region Jump
+        private Sequence jumpSequence = null;
+
+        // -----------------------
+
+        /// <summary>
+        /// Performs a jump using the last movement to a given distance.
+        /// </summary>
+        public bool Jump(Vector2 _from, float _distance) {
+
+            Vector2 _direction = lastMovement;
+            _from.y = transform.position.y;
+
+            if (Mathf.Abs(_direction.x) >= Mathf.Abs(_direction.y)) {
+                _direction.y = 0f;
+            } else {
+                _direction.x = 0f;
+            }
+
+            return Jump(_from, _direction.normalized * _distance);
+        }
+
+        /// <summary>
+        /// Performs a jump in a given direction.
+        /// </summary>
+        public bool Jump(Vector2 _from, Vector2 _direction) {
+
+            if (isJumping)
+                return false;
+
+            // Animation.
+            jumpSequence = DOTween.Sequence();
+            isJumping = true;
+
+            Vector3 _destination = ProjectUtility.ClampInCameraBounds(_from + ProjectUtility.GetCoords(_direction));
+            PlayJump();
+
+            jumpSequence.Append(transform.DOJump(_destination, attributes.JumpHeight, 1, (_destination - transform.position).magnitude * attributes.JumpSpeed).SetEase(Ease.Linear));
+            jumpSequence.SetRecyclable(true).SetAutoKill(true).OnKill(OnKill);
+
+            return true;
+
+            // ----- Local Method ----- \\
+
+            void OnKill() {
+
+                PlayIdle();
+
+                jumpSequence = null;
+                isJumping = false;
+            }
+        }
+
+        // -------------------------------------------
+        // Utility
+        // -------------------------------------------
+
+        private void CancelJump() {
+
+            if (jumpSequence.IsActive()) {
+                jumpSequence.Kill();
+            }
         }
         #endregion
 
@@ -642,27 +711,6 @@ namespace LudumDare54
         }
         #endregion
 
-        #region Reload
-        private void ReloadLevel() {
-
-            EnhancedSceneManager _sceneManager = EnhancedSceneManager.Instance;
-
-            if (_sceneManager.LoadingState != LoadingState.Inactive)
-                return;
-
-            LudumDareLoadSceneSettings _settings = new LudumDareLoadSceneSettings(LoadingMode.Transition, LoadingChronos.FreezeOnFaded);
-            int _sceneCount = _sceneManager.LoadedBundleCount;
-
-            for (int i = 0; i < _sceneCount; i++) {
-
-                LoadSceneMode _mode = (i == 0) ? LoadSceneMode.Single : LoadSceneMode.Additive;
-                _sceneManager.LoadSceneBundle(_sceneManager.GetLoadedBundleAt(i), _mode, _settings);
-            }
-
-            isLoading = _sceneCount != 0;
-        }
-        #endregion
-
         #region Spawn
         private Sequence spawnSequence = null;
 
@@ -699,7 +747,7 @@ namespace LudumDare54
             }
         }
 
-        public float Despawn() {
+        public float Despawn(Vector3 _position) {
 
             CompleteSpawn();
             PlayDespawn();
@@ -711,6 +759,7 @@ namespace LudumDare54
             float _duration = attributes.DespawnDuration;
 
             spawnSequence.Join(transform.DOBlendableMoveBy(new Vector3(0f, attributes.DespawnMovementOffset, 0f), _duration).SetEase(attributes.DespawnMovementCurve));
+            spawnSequence.Join(transform.DOBlendableMoveBy(_position - transform.position, _duration).SetEase(Ease.OutSine));
             spawnSequence.SetAutoKill(true).SetRecyclable(true).OnKill(OnKill);
 
             // FX.
@@ -1146,7 +1195,7 @@ namespace LudumDare54
         /// Makes the player respawn.
         /// </summary>
         public void Respawn() {
-            TeleportTo(spawn, true, true);
+            TeleportTo(LevelManager.Instance.Spawn, true, true);
             Spawn();
         }
 
@@ -1178,6 +1227,7 @@ namespace LudumDare54
             CancelFall();
             CompleteSpawn();
             PlayIdle();
+            CancelJump();
 
             isGrounded = true;
         }

@@ -80,7 +80,7 @@ namespace EnhancedFramework.Core {
         // -------------------------------------------
 
         // Called after the first scene Awake.
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         public static void Initialize() {
 
             Type _parserType = typeof(EnhancedStringParser);

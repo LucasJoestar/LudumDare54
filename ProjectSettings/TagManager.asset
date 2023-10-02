@@ -14,7 +14,7 @@ TagManager:
   - Ground
   - Wall
   - Player
-  - Interact
+  - Trigger
   - 
   - 
   - 
@@ -41,14 +41,23 @@ TagManager:
   - name: Outline
     uniqueID: 1322190223
     locked: 0
-  - name: Background 1
+  - name: Platform 1
     uniqueID: 1864207131
     locked: 0
-  - name: Background 2
+  - name: Platform 2
     uniqueID: 3859490249
     locked: 0
-  - name: Background 3
+  - name: Platform 3
     uniqueID: 1025454479
+    locked: 0
+  - name: Block 1
+    uniqueID: 156257277
+    locked: 0
+  - name: Block 2
+    uniqueID: 469105507
+    locked: 0
+  - name: Block 3
+    uniqueID: 2309977533
     locked: 0
   - name: Default
     uniqueID: 0

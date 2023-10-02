@@ -10,7 +10,6 @@ using EnhancedFramework.Core;
 using EnhancedFramework.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 namespace LudumDare54.UI {
     /// <summary>

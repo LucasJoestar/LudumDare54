@@ -41,7 +41,7 @@ namespace LudumDare54 {
         #endregion
 
         #region Camera
-        private const float HeightMarginsCoef = .85f;
+        private const float HeightMarginsCoef = .86222221f;
 
         // -----------------------
 
