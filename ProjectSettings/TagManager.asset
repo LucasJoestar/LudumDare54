@@ -41,8 +41,14 @@ TagManager:
   - name: Outline
     uniqueID: 1322190223
     locked: 0
-  - name: Background
+  - name: Background 1
+    uniqueID: 1864207131
+    locked: 0
+  - name: Background 2
     uniqueID: 3859490249
+    locked: 0
+  - name: Background 3
+    uniqueID: 1025454479
     locked: 0
   - name: Default
     uniqueID: 0
