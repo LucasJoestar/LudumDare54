@@ -55,7 +55,7 @@ MonoBehaviour:
   Tags:
     Tags: []
   lastModifiedBy: Lucas
-  lastModifiedDate: 01/10/2023 01:49:02
+  lastModifiedDate: 02/10/2023 13:40:35
   IsEditorPreview: 0
   isHeader: 0
   overrideHierarchyStyle: 0
@@ -257,7 +257,7 @@ MonoBehaviour:
     constraints: 0
     interfaces: []
   unloadResources: 0
-  firstScene: {fileID: 11400000, guid: 1f0f7795c47d80b4ebba81d2e6452f57, type: 2}
+  firstScene: {fileID: 11400000, guid: 201ca9eedc4eda847af08738d947f8c6, type: 2}
   loadingState: 0
   unloadingState: 0
   loadedBundles:
@@ -304,8 +304,6 @@ MonoBehaviour:
       data:
         Mode: 9
         Chronos: 1
-        Cutscene: {fileID: 0}
-        Video: {fileID: 0}
         Delay: 0
 --- !u!114 &7749808053234120843
 MonoBehaviour:

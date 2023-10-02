@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523b2248287af4646af20684a192b12b, type: 3}
   m_Name: BP_Custom
   m_EditorClassIdentifier: 
-  Description: Enter a description here...
-  BuildTarget: 5
-  BuildOptions: 1
+  Description: Release
+  BuildTarget: 19
+  BuildOptions: 0
   buildCount: 0
-  scriptingDefineSymbols: 
+  scriptingDefineSymbols: CHRONOS_INPUT;DEVELOPER_CONSOLE;DEVELOPMENT;DOTWEEN_ENABLED;ENHANCED_LOGGER;ENHANCED_LOGS;UNITY_POST_PROCESSING_STACK_V2

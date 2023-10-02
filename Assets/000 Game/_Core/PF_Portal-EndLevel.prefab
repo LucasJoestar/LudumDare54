@@ -49,7 +49,7 @@ MonoBehaviour:
   Tags:
     Tags: []
   lastModifiedBy: Lucas
-  lastModifiedDate: 02/10/2023 02:33:40
+  lastModifiedDate: 02/10/2023 13:41:04
   IsEditorPreview: 0
   isHeader: 0
   overrideHierarchyStyle: 0
@@ -165,7 +165,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 0.23921566, g: 0.9529412, b: 0.28029427, a: 1}
+  m_Color: {r: 0.5928017, g: 0.23921566, b: 0.9529412, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -226,7 +226,7 @@ MonoBehaviour:
   Tags:
     Tags: []
   lastModifiedBy: Lucas
-  lastModifiedDate: 02/10/2023 02:33:40
+  lastModifiedDate: 02/10/2023 13:40:56
   IsEditorPreview: 0
   isHeader: 0
   overrideHierarchyStyle: 0
@@ -318,7 +318,7 @@ MonoBehaviour:
     assetGUID: 
     objectID: 0
     prefabID: 0
-  nextScene: {fileID: 11400000, guid: f03b9ab7fb3e4ec4fb91dd0d65eed043, type: 2}
+  nextScene: {fileID: 11400000, guid: b42149824e5259e438223f9d011a9a83, type: 2}
   delay: 0.25
   settings:
     Mode: 9
