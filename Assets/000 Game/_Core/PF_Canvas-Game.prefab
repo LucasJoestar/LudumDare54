@@ -127,7 +127,7 @@ MonoBehaviour:
   Tags:
     Tags: []
   lastModifiedBy: Lucas
-  lastModifiedDate: 01/10/2023 15:56:59
+  lastModifiedDate: 02/10/2023 01:08:19
   IsEditorPreview: 0
   isHeader: 0
   overrideHierarchyStyle: 0
@@ -210,10 +210,10 @@ Canvas:
   m_GameObject: {fileID: 8752152171594996038}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0

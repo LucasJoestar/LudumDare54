@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df72bc98e0e5a7c42a48dc92cccfb835, type: 3}
+  m_Name: EnhancedEditor.Editor.SceneHandler 1
+  m_EditorClassIdentifier: 
+  sceneGroups:
+  - Name: Default Group
+    Scenes:
+    - GUID: 7a06c721e58187f48a7ee16e8972ea43
+    - GUID: 880632bf435fa7c498a7cdd3dc0c0672
+    - GUID: 8c9cfa26abfee488c85f1582747f6a02
+    - GUID: 5753aa07446e25f4ba60a97bcedb5799
+    - GUID: c863e4440ec306d428848555b2aa06a9
+    - GUID: a5f7a56d339da84449899ecf95fbe33d
+    - GUID: 6a2ad353325ffe64983c28d69a8738f5
+    - GUID: a351b59ca54a0bc4083c35844da13a61
+    - GUID: 237744bb87a5d144cb97babf7faefa00
+    - GUID: 2cda990e2423bbf4892e6590ba056729
+    - GUID: e026d555eae824f65922633f37a14385
+    - GUID: 5cae0d87369a2405eaa962b8d920b947
+  bundleGroups:
+  - Name: Default Group
+    Bundles:
+    - SceneBundle: {fileID: 11400000, guid: bed933626335d64479af33912bcbeb34, type: 2}
+    - SceneBundle: {fileID: 11400000, guid: f03b9ab7fb3e4ec4fb91dd0d65eed043, type: 2}
+    - SceneBundle: {fileID: 11400000, guid: 1f0f7795c47d80b4ebba81d2e6452f57, type: 2}

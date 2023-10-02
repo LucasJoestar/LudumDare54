@@ -39,24 +39,9 @@ namespace LudumDare54.UI {
         Default     = 0,
 
         /// <summary>
-        /// Plays a cutscene during loading.
-        /// </summary>
-        Cutscene    = 5,
-
-        /// <summary>
-        /// Plays a video during loading.
-        /// </summary>
-        Video       = 6,
-
-        /// <summary>
         /// Only displays a simple black screen
         /// </summary>
-        Black       = 9,
-
-        /// <summary>
-        /// Displays an art on the loading scene.
-        /// </summary>
-        ScreenArt   = 11,
+        Transition       = 9,
     }
 
     /// <summary>
@@ -76,16 +61,6 @@ namespace LudumDare54.UI {
         public LoadingChronos Chronos = LoadingChronos.FreezeInstant;
 
         /// <summary>
-        /// Transition cutscene played during loading.
-        /// </summary>
-        public EnhancedPlayablePlayer Cutscene = null;
-
-        /// <summary>
-        /// Transition video played during loading.
-        /// </summary>
-        public EnhancedVideoPlayer Video = null;
-
-        /// <summary>
         /// Delay before playing a cutscene or a video.
         /// </summary>
         public float Delay = 0f;
@@ -96,22 +71,6 @@ namespace LudumDare54.UI {
 
         /// <inheritdoc cref="LudumDareLoadSceneSettings(LoadingMode, LoadingChronos)"/>
         public LudumDareLoadSceneSettings() : this(LoadingMode.Default, LoadingChronos.FreezeInstant) { }
-
-        /// <param name="_cutscene"><inheritdoc cref="Cutscene" path="/summary"/></param>
-        /// <param name="_delay"><inheritdoc cref="Delay" path="/summary"/></param>
-        /// <inheritdoc cref="LudumDareLoadSceneSettings(LoadingMode, LoadingChronos)"/>
-        public LudumDareLoadSceneSettings(EnhancedPlayablePlayer _cutscene, LoadingChronos _chronos, float _delay = 0f) : this(LoadingMode.Cutscene, _chronos) {
-            Cutscene = _cutscene;
-            Delay = _delay;
-        }
-
-        /// <param name="_video"><inheritdoc cref="Video" path="/summary"/></param>
-        /// <param name="_delay"><inheritdoc cref="Delay" path="/summary"/></param>
-        /// <inheritdoc cref="LudumDareLoadSceneSettings(LoadingMode, LoadingChronos)"/>
-        public LudumDareLoadSceneSettings(EnhancedVideoPlayer _video, LoadingChronos _chronos, float _delay = 0f) : this(LoadingMode.Video, _chronos) {
-            Video = _video;
-            Delay = _delay;
-        }
 
         /// <param name="_mode"><inheritdoc cref="Mode" path="/summary"/></param>
         /// <param name="_chronos"><inheritdoc cref="Chronos" path="/summary"/></param>

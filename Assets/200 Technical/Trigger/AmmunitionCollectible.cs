@@ -24,6 +24,7 @@ namespace LudumDare54 {
         [SerializeField, Enhanced, Required] private Transform root        = null;
         [SerializeField, Enhanced, Required] private Transform bubble      = null;
         [SerializeField, Enhanced, Required] private Transform item        = null;
+        [SerializeField, Enhanced, Required] private Transform shadow       = null;
 
         [Space(10f)]
 
@@ -157,9 +158,11 @@ namespace LudumDare54 {
 
                 Tween _movement = bubble.DOBlendableMoveBy(burstMovement, duration).SetEase(burstMovementEase);
                 Tween _scale    = bubble.DOScale(burstScale, duration).SetEase(burstScaleEase);
+                Tween _scale2   = shadow.DOScale(0f, duration).SetEase(burstScaleEase);
 
                 _burst.Append(_movement);
                 _burst.Join(_scale);
+                _burst.Join(_scale2);
             }
 
 
@@ -234,7 +237,11 @@ namespace LudumDare54 {
         }
 
         private void AddToInventory() {
-            InventoryManager.Instance.AddAmmunition(ammunition, amount);
+
+            InventoryManager _inventory = InventoryManager.Instance;
+            if (_inventory != null) {
+                _inventory.AddAmmunition(ammunition, amount);
+            }
         }
         #endregion
 

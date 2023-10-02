@@ -2,9 +2,11 @@
 //
 // Notes:
 //
-//  • Look at
-//  • Fire (complex) / Preview
-//  • Fire (simple)
+//  • Camera crop (black bars / resolution)
+//
+//  • Simple fire
+//  • Collectible (Strawberry)
+//  • Footsteps (sprite + smoke)
 //
 // ============================================================================ //
 
@@ -17,6 +19,7 @@ using LudumDare54.UI;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 
@@ -39,7 +42,7 @@ namespace LudumDare54
     [DefaultExecutionOrder(999)]
     [AddComponentMenu(ProjectUtility.MenuPath + "Player/Player Controller"), SelectionBase, DisallowMultipleComponent]
     public class PlayerController : EnhancedSingleton<PlayerController>, IInputUpdate, IGameStateOverrideCallback {
-        public override UpdateRegistration UpdateRegistration => base.UpdateRegistration | UpdateRegistration.Init | UpdateRegistration.Input;
+        public override UpdateRegistration UpdateRegistration => base.UpdateRegistration | UpdateRegistration.Init | UpdateRegistration.Play | UpdateRegistration.Input;
 
         #region Global Members
         [Section("Player Controller")]
@@ -50,25 +53,32 @@ namespace LudumDare54
 
         [Space(5f)]
 
-        [SerializeField, Required] protected new Rigidbody2D rigidbody  = null;
-        [SerializeField, Required] protected new Collider2D collider    = null;
-        [SerializeField, Required] protected Collider2D trigger         = null;
+        [SerializeField, Enhanced, Required] protected new Rigidbody2D rigidbody  = null;
+        [SerializeField, Enhanced, Required] protected new Collider2D collider    = null;
+        [SerializeField, Enhanced, Required] protected Collider2D trigger         = null;
 
         [Space(5f)]
 
-        [SerializeField, Required] protected Animator animator = null;
+        [SerializeField, Enhanced, Required] protected Animator animator    = null;
+        [SerializeField, Enhanced, Required] private Transform aimDebug     = null;
+        [SerializeField, Enhanced, Required] private Transform fxAnchor     = null;
+        [SerializeField, Enhanced, Required] private Transform spellAnchor  = null;
 
         [Space(10f), HorizontalLine(SuperColor.Grey, 1f), Space(5f)]
 
         [SerializeField] private bool isPlayable    = true;
         [SerializeField] private bool debugVelocity = false;
+        [SerializeField] private bool debugAim      = false;
 
         [Space(10f)]
 
-        [SerializeField, Enhanced, ReadOnly] private bool isFacingRight = true;
-        [SerializeField, Enhanced, ReadOnly] private bool isGrounded    = true;
-        [SerializeField, Enhanced, ReadOnly] private bool isLoading     = false;
-        [SerializeField, Enhanced, ReadOnly] private bool removeControl = false;
+        [SerializeField, Enhanced, ReadOnly] private bool isFacingRight     = true;
+        [SerializeField, Enhanced, ReadOnly] private bool isGrounded        = true;
+        [SerializeField, Enhanced, ReadOnly] private bool isLoading         = false;
+        [SerializeField, Enhanced, ReadOnly] private bool removeControl     = false;
+        [SerializeField, Enhanced, ReadOnly] private bool isInAnimation     = false;
+        [SerializeField, Enhanced, ReadOnly] private bool isPreparingSpell  = false;
+        [SerializeField, Enhanced, ReadOnly] private bool isSpawning        = false;
 
         [Space(5f)]
 
@@ -114,7 +124,20 @@ namespace LudumDare54
         }
 
         public bool HasControl {
-            get { return isPlayable && isGrounded && !isLoading && !removeControl; }
+            get { return isPlayable && isGrounded && !isLoading && !removeControl && !IsInAnimation && !isSpawning; }
+        }
+
+        public bool IsInAnimation {
+            get { return isInAnimation; }
+            set { isInAnimation = value; }
+        }
+
+        public bool IsPreparingSpell {
+            get { return isPreparingSpell; }
+            set {
+                isPreparingSpell = value;
+                EnableSpellAim(value);
+            }
         }
         #endregion
 
@@ -155,6 +178,12 @@ namespace LudumDare54
             initFacingRight = isFacingRight;
         }
 
+        protected override void OnPlay() {
+            base.OnPlay();
+
+            Spawn();
+        }
+
         protected override void OnBehaviourDisabled() {
             base.OnBehaviourDisabled();
 
@@ -167,6 +196,15 @@ namespace LudumDare54
             // Unregistration.
             GameStateManager.Instance.UnregisterOverrideCallback(this);
             attributes.Unregister(this);
+
+            fallDelay.Cancel();
+
+            CancelFall();
+            CompleteSpawn();
+        }
+
+        private void OnDestroy() {
+            
         }
 
         // -----------------------
@@ -231,8 +269,7 @@ namespace LudumDare54
         // ----- Input ----- \\
 
         #region Input
-        private Cooldown selectionCooldown = new Cooldown(.1f);
-        private int lastSelection = 0;
+        private static readonly Cooldown selectionCooldown = new Cooldown(.1f);
 
         // -----------------------
 
@@ -250,6 +287,22 @@ namespace LudumDare54
                 return;
             }
 
+            // Preparing spell.
+            if (IsPreparingSpell) {
+
+                if (_inputs.FireInput.Performed()) {
+
+                    CancelSpell();
+
+                } else if (!_inputs.Fire2Input.Holding()) {
+
+                    FireSpell();
+
+                } else {
+                    PrepareSpellUpdate(_inputs);
+                }
+            }
+
             // Reset state.
             if (!HasControl) {
 
@@ -257,6 +310,16 @@ namespace LudumDare54
                 ResetSpeed();
 
                 return;
+            }
+
+            // Fire.
+            if (_inputs.FireInput.Performed()) {
+                Fire();
+            }
+
+            // Spell.
+            if (_inputs.Fire2Input.Performed()) {
+                PrepareSpell();
             }
 
             // Selection.
@@ -267,8 +330,6 @@ namespace LudumDare54
                 InventoryManager.Instance.IncrementSelectedIndex(_increment);
                 selectionCooldown.Reload();
             }
-
-            lastSelection = _increment;
 
             // Position refresh.
             if (shouldBeRefreshed || (transform.position != lastPosition)) {
@@ -298,10 +359,15 @@ namespace LudumDare54
         private const int SpecialLayer  = 1;
         private const int OverrideLayer = 2;
 
-        private static readonly int idle_Hash = Animator.StringToHash("Idle");
-        private static readonly int move_Hash = Animator.StringToHash("Moving");
-        private static readonly int fire_Hash = Animator.StringToHash("Fire");
-        private static readonly int fall_Hash = Animator.StringToHash("Fall");
+        private static readonly int idle_Hash       = Animator.StringToHash("Idle");
+        private static readonly int move_Hash       = Animator.StringToHash("Moving");
+        private static readonly int fire_Hash       = Animator.StringToHash("Fire");
+        private static readonly int fall_Hash       = Animator.StringToHash("Fall");
+        private static readonly int spawn_Hash      = Animator.StringToHash("Spawn");
+        private static readonly int despawn_Hash    = Animator.StringToHash("Despawn");
+
+        private static readonly int prepareSpell_Hash = Animator.StringToHash("Prepare Spell");
+        private static readonly int fireSpell_Hash    = Animator.StringToHash("Fire Spell");
 
         // -------------------------------------------
         // States
@@ -312,14 +378,32 @@ namespace LudumDare54
             for (int i = 0; i < animator.layerCount; i++) {
                 animator.Play(idle_Hash, i, 0f);
             }
+
+            animator.ResetTrigger(fireSpell_Hash);
         }
 
         public void PlayFire() {
             animator.Play(fire_Hash, SpecialLayer, 0f);
         }
 
+        public void PlayPrepareSpell() {
+            animator.Play(prepareSpell_Hash, SpecialLayer, 0f);
+        }
+
+        public void PlayFireSpell() {
+            animator.SetTrigger(fireSpell_Hash);
+        }
+
         public void PlayFall() {
             animator.Play(fall_Hash, OverrideLayer, 0f);
+        }
+
+        public void PlaySpawn() {
+            animator.Play(spawn_Hash, OverrideLayer, 0f);
+        }
+
+        public void PlayDespawn() {
+            animator.Play(despawn_Hash, OverrideLayer, 0f);
         }
 
         // -------------------------------------------
@@ -440,11 +524,120 @@ namespace LudumDare54
         #endregion
 
         #region Fire
+        private Block preparingBlock = null;
+        private bool isAimValid = false;
 
+        private Vector2 aimPosition  = new Vector2();
+
+        // -----------------------
+
+        public bool PrepareSpell() {
+
+            if (!InventoryManager.Instance.GetSelectedIndex(out InventoryAmmunition _ammunition) || (_ammunition.Count <= 0) || !_ammunition.Ammunition.Prefab.TryGetComponent(out Block _block))
+                return false;
+
+            PlayPrepareSpell();
+
+            return true;
+        }
+
+        public void FireSpell() {
+
+            if (!isAimValid || !InventoryManager.Instance.GetSelectedIndex(out InventoryAmmunition _ammunition)) {
+
+                CancelSpell();
+                return;
+            }
+
+            PlayFireSpell();
+
+            // Spawn.
+            if (preparingBlock != null) {
+
+                GameObject _projectile = Instantiate(VariousSettings.I.SpellProjectile, spellAnchor);
+
+                _projectile.transform.ResetLocal();
+                _projectile.transform.SetParent(null);
+
+                preparingBlock.SpawnWithProjectile(_projectile);
+                preparingBlock = null;
+
+                InventoryManager.Instance.RemoveAmmunition(_ammunition.Ammunition, 1);
+            }
+        }
+
+        public void CancelSpell() {
+
+            PlayIdle();
+
+            // Destroy preview.
+            if (preparingBlock != null) {
+
+                Destroy(preparingBlock.gameObject);
+                preparingBlock = null;
+            }
+        }
+
+        // -------------------------------------------
+        // Callback
+        // -------------------------------------------
+
+        private void PrepareSpellUpdate(PlayerInputs _inputs) {
+
+            Vector2 _movement = _inputs.AimInput.GetVector2Axis() * attributes.AimSpeed * DeltaTime;
+            aimPosition += _movement;
+
+            aimPosition = ProjectUtility.ClampInCameraBounds(aimPosition);
+            isAimValid  = preparingBlock.UpdatePreview(aimPosition);
+
+            Flip(aimPosition.x >= transform.position.x);
+
+            // Debug.
+            if (debugAim) {
+                aimDebug.position = aimPosition;
+            }
+        }
+
+        private void EnableSpellAim(bool _enabled) {
+
+            // Debug.
+            if (debugAim) {
+                aimDebug.gameObject.SetActive(_enabled);
+            }
+
+            // Preview.
+            if (_enabled && InventoryManager.Instance.GetSelectedIndex(out InventoryAmmunition _ammunition) && (_ammunition.Count > 0) && _ammunition.Ammunition.Prefab.TryGetComponent(out Block _block)) {
+
+                aimPosition = ProjectUtility.GetCoords(transform.position) + (Vector2.right * isFacingRight.Signf());
+
+                // Spawn.
+                _block = Instantiate(_block, null);
+
+                _block.enabled = false;
+                _block.UpdatePreview(aimPosition);
+
+                preparingBlock = _block;
+            }
+
+            isAimValid = false;
+        }
+
+        // -------------------------------------------
+        // Fire
+        // -------------------------------------------
+
+        public void Fire() {
+            PlayFire();
+        }
         #endregion
 
         #region Control
         public void RemoveControl(bool _removeControl) {
+
+            if (_removeControl) {
+                fallDelay.Cancel();
+            }
+
             removeControl = _removeControl;
         }
         #endregion
@@ -457,7 +650,7 @@ namespace LudumDare54
             if (_sceneManager.LoadingState != LoadingState.Inactive)
                 return;
 
-            LudumDareLoadSceneSettings _settings = new LudumDareLoadSceneSettings(LoadingMode.Black, LoadingChronos.FreezeOnFaded);
+            LudumDareLoadSceneSettings _settings = new LudumDareLoadSceneSettings(LoadingMode.Transition, LoadingChronos.FreezeOnFaded);
             int _sceneCount = _sceneManager.LoadedBundleCount;
 
             for (int i = 0; i < _sceneCount; i++) {
@@ -467,6 +660,79 @@ namespace LudumDare54
             }
 
             isLoading = _sceneCount != 0;
+        }
+        #endregion
+
+        #region Spawn
+        private Sequence spawnSequence = null;
+
+        // -----------------------
+
+        private void Spawn() {
+
+            CompleteSpawn();
+            PlaySpawn();
+
+            isSpawning = true;
+
+            // Animation.
+            spawnSequence = DOTween.Sequence();
+            float _duration = attributes.SpawnDuration;
+
+            spawnSequence.Join(transform.DOBlendableMoveBy(new Vector3(0f, attributes.SpawnMovementOffset, 0f), _duration).SetEase(attributes.SpawnMovementCurve));
+            spawnSequence.SetAutoKill(true).SetRecyclable(true).OnKill(OnKill);
+
+            // FX.
+            ParticleSystemAsset _particle = VariousSettings.I.SpawnPlayerFX;
+            if (_particle != null) {
+                _particle.Play(fxAnchor, FeedbackPlayOptions.PlayAtPosition);
+            }
+
+            // ----- Local Method ----- \\
+
+            void OnKill() {
+
+                spawnSequence = null;
+                isSpawning = false;
+
+                PlayIdle();
+            }
+        }
+
+        public float Despawn() {
+
+            CompleteSpawn();
+            PlayDespawn();
+
+            isSpawning = true;
+
+            // Animation.
+            spawnSequence = DOTween.Sequence();
+            float _duration = attributes.DespawnDuration;
+
+            spawnSequence.Join(transform.DOBlendableMoveBy(new Vector3(0f, attributes.DespawnMovementOffset, 0f), _duration).SetEase(attributes.DespawnMovementCurve));
+            spawnSequence.SetAutoKill(true).SetRecyclable(true).OnKill(OnKill);
+
+            // FX.
+            ParticleSystemAsset _particle = VariousSettings.I.DespawnPlayerFX;
+            if (_particle != null) {
+                _particle.Play(fxAnchor, FeedbackPlayOptions.PlayAtPosition);
+            }
+
+            return _duration;
+
+            // ----- Local Method ----- \\
+
+            void OnKill() {
+                spawnSequence = null;
+            }
+        }
+
+        private void CompleteSpawn() {
+
+            if (spawnSequence.IsActive()) {
+                spawnSequence.Kill();
+            }
         }
         #endregion
 
@@ -881,6 +1147,7 @@ namespace LudumDare54
         /// </summary>
         public void Respawn() {
             TeleportTo(spawn, true, true);
+            Spawn();
         }
 
         /// <summary>
@@ -909,6 +1176,7 @@ namespace LudumDare54
 
             ResetSpeed();
             CancelFall();
+            CompleteSpawn();
             PlayIdle();
 
             isGrounded = true;

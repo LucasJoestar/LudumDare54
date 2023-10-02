@@ -17,3 +17,16 @@ MonoBehaviour:
     assetGUID: b34ec55ee5b8dbc4095b4c7415bf2389
     objectID: 11400000
     prefabID: 0
+  UI_ActivateScaleDuration: 0.5
+  UI_ActivateScaleEase: 27
+  UI_DeactivateScaleDuration: 0.5
+  UI_DeactivateScaleEase: 6
+  UI_SelectScale: 1.5
+  UI_SelectScaleDuration: 0.15
+  UI_SelectScaleEase: 9
+  UI_UnselectScaleDuration: 0.15
+  UI_UnselectScaleEase: 6
+  UI_SelectFont: {fileID: 2100000, guid: 0991a8858c79aee4ba740f99e6e3de38, type: 2}
+  UI_SelectColor: {r: 0.8666667, g: 0.5921569, b: 0.8509804, a: 1}
+  UI_UnselectFont: {fileID: 2100000, guid: 10cfb96397b3d4348b58bd585d33a479, type: 2}
+  UI_UnselectColor: {r: 0, g: 0, b: 0, a: 1}

@@ -47,7 +47,9 @@ namespace LudumDare54
                 return;
 
             _player.RemoveControl(true);
-            loadDelay = Delayer.Call(delay, Load, true);
+            float _delay = _player.Despawn();
+
+            loadDelay = Delayer.Call(delay + _delay, Load, true);
 
             // ----- Local Method ----- \\
 

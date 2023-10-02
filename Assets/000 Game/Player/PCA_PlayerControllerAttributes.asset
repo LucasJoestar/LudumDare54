@@ -64,13 +64,84 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
+  AimSpeed: 0.7
   ColliderMask:
     serializedVersion: 2
     m_Bits: 128
   TriggerMask:
     serializedVersion: 2
     m_Bits: 0
-  FireCooldown: 0.5
+  FireCooldown: 1
+  SpawnDuration: 0.42
+  SpawnMovementOffset: 0.7
+  SpawnMovementCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.038884856
+      outSlope: 0.038884856
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.06065319
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0
+      outSlope: -0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.06804043
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  DespawnDuration: 0.45
+  DespawnMovementOffset: 0.4
+  DespawnMovementCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.038884856
+      outSlope: 0.038884856
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.06065319
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: -1
+      inSlope: -0
+      outSlope: -0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.06804043
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   FallDelay: 0.1
   FallDuration: 0.7
   FallRespawnDelay: 0.3

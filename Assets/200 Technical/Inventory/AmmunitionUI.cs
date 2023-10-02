@@ -93,7 +93,7 @@ namespace LudumDare54 {
 
             sequence = DOTween.Sequence();
 
-            sequence.Append(transform.DOScale(1f, VariousSettings.I.UI_ActivateScaleDuration).SetEase(VariousSettings.I.UI_ActivateScaleEase));
+            sequence.Append(transform.DOScale(1f, UISettings.I.UI_ActivateScaleDuration).SetEase(UISettings.I.UI_ActivateScaleEase));
             sequence.OnUpdate(refreshGroupDelegate).SetRecyclable(true).SetAutoKill(true).OnKill(OnKill);
 
             // Instant.
@@ -133,7 +133,7 @@ namespace LudumDare54 {
 
             sequence = DOTween.Sequence();
 
-            sequence.Append(transform.DOScale(0f, VariousSettings.I.UI_DeactivateScaleDuration).SetEase(VariousSettings.I.UI_DeactivateScaleEase));
+            sequence.Append(transform.DOScale(0f, UISettings.I.UI_DeactivateScaleDuration).SetEase(UISettings.I.UI_DeactivateScaleEase));
             sequence.OnUpdate(refreshGroupDelegate).SetRecyclable(true).SetAutoKill(true).OnKill(OnKill);
 
             // Instant.
@@ -169,13 +169,13 @@ namespace LudumDare54 {
             CancelAnimation();
             isSelected = true;
 
-            text.fontMaterial = VariousSettings.I.UI_SelectFont;
-            outline.color = VariousSettings.I.UI_SelectColor;
+            text.fontMaterial = UISettings.I.UI_SelectFont;
+            outline.color = UISettings.I.UI_SelectColor;
 
             // Animation.
             sequence = DOTween.Sequence();
 
-            sequence.Append(transform.DOScale(VariousSettings.I.UI_SelectScale, VariousSettings.I.UI_SelectScaleDuration).SetEase(VariousSettings.I.UI_SelectScaleEase));
+            sequence.Append(transform.DOScale(UISettings.I.UI_SelectScale, UISettings.I.UI_SelectScaleDuration).SetEase(UISettings.I.UI_SelectScaleEase));
             sequence.OnUpdate(refreshGroupDelegate).SetRecyclable(true).SetAutoKill(true).OnKill(OnKill);
 
             // Instant.
@@ -205,13 +205,13 @@ namespace LudumDare54 {
             CancelAnimation();
             isSelected = false;
 
-            text.fontMaterial = VariousSettings.I.UI_UnselectFont;
-            outline.color = VariousSettings.I.UI_UnselectColor;
+            text.fontMaterial = UISettings.I.UI_UnselectFont;
+            outline.color = UISettings.I.UI_UnselectColor;
 
             // Animation.
             sequence = DOTween.Sequence();
 
-            sequence.Append(transform.DOScale(1f, VariousSettings.I.UI_UnselectScaleDuration).SetEase(VariousSettings.I.UI_UnselectScaleEase));
+            sequence.Append(transform.DOScale(1f, UISettings.I.UI_UnselectScaleDuration).SetEase(UISettings.I.UI_UnselectScaleEase));
             sequence.OnUpdate(refreshGroupDelegate).SetRecyclable(true).SetAutoKill(true).OnKill(OnKill);
 
             // Instant.

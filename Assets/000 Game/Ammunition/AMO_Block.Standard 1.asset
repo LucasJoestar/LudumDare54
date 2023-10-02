@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b28bc8140bcb30f42ba128a4dc93c217, type: 3}
   m_Name: AMO_Block.Standard 1
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 0}
+  Prefab: {fileID: 5669994190373725644, guid: e818e3ad817f0ae42a521574782a602d, type: 3}
   Icon: {fileID: 21300000, guid: d36ff7a39c6c630419291e8a0177a1ec, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}

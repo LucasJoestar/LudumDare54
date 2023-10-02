@@ -34,6 +34,7 @@ MonoBehaviour:
     ActionInput: {fileID: 11400000, guid: 51f4462df45c2c84f9e09f37fc9e5792, type: 2}
     FireInput: {fileID: 11400000, guid: 1e056b98acc38154699383a62931786a, type: 2}
     Fire2Input: {fileID: 11400000, guid: 78cad628dab98b54c8298087b36103a1, type: 2}
+    AimInput: {fileID: 11400000, guid: 94e041788192c324b9667a2a1b55ecbd, type: 2}
     ResetInput: {fileID: 11400000, guid: fa198f5ea9860f04ca6f3bf22ddfa578, type: 2}
   AnyButtonInput: {fileID: 11400000, guid: 9351c4a162ef652429c1e3c53680628b, type: 2}
   SkipInput: {fileID: 11400000, guid: f685e5ab5f205b84bb9b7529fc931820, type: 2}

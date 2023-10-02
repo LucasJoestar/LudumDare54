@@ -36,8 +36,10 @@ namespace LudumDare54.GameStates {
             IsDebug = false;
 
             // Hide cursor.
+            #if !UNITY_EDITOR
             CursorLockMode = CursorLockMode.Confined;
-            IsCursorVisible = true;
+            IsCursorVisible = false;
+            #endif
 
             return this;
         }

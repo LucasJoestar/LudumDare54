@@ -1,94 +1,48 @@
-using System.Collections;
+// =============== https://github.com/LucasJoestar/LudumDare54/ =============== //
+//
+// Notes:
+//
+// ============================================================================ //
+
+using EnhancedFramework.Core;
 using System.Collections.Generic;
 using UnityEngine;
-using EnhancedFramework.Core;
-using EnhancedEditor;
-using UnityEngine.UIElements;
 
 namespace LudumDare54
 {
+    [DefaultExecutionOrder(-99)]
     public class LevelManager : EnhancedSingleton<LevelManager>
     {
-        [SerializeField]
-        public float width;
-        [SerializeField]
-        public float height;
-        [SerializeField]
-        public List<int> Grid;
-        [SerializeField]
-        public GameObject Empty;
-        [SerializeField]
-        public GameObject Block;
-        public float UIOffsety = 3f;
-        private float xscale = 1f;
-        private float yscale = 1f;
-        private float xoffset = 0.75f;
-        private float yoffset = 0.75f;
-        private Vector3 origin;
+        #region Global Members
+        //[Section("Level Manager")]
+        #endregion
 
-        public void InitLevel(float w, float h)
-        {
-            this.width = w;
-            this.height = h;
-            this.Grid = new List<int>();
-            int cpt = 0;
-             this.origin = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane));
-            this.origin.x = this.origin.x + xoffset;
-            this.origin.y = this.origin.y + yoffset;
-            for (int i = 0; i < w-1; i++) {
-                for (int j = 0; j < h; j++)
-                {
-                    Instantiate(Empty, new Vector3(xscale * (float)i+this.origin.x, yscale*(float)j+this.origin.y, 0), Quaternion.identity);
-                    Grid.Add(cpt);
-                    cpt++;
-                }   
+        #region Registration
+        private static readonly List<Block> blocks = new List<Block>();
+
+        // -----------------------
+
+        public static void RegisterBlock(Block _block) {
+            blocks.Add(_block);
+        }
+
+        public static void UnregisterBlock(Block _block) {
+            blocks.Remove(_block);
+        }
+        #endregion
+
+        #region Utility
+        public bool IsAvailableCoords(Vector2 _coords) {
+
+            _coords = ProjectUtility.GetCoords(_coords);
+
+            foreach (Block _block in blocks) {
+                if (_block.IsOnCoords(_coords))
+                    return false;
             }
-        }
 
-        [Button(ActivationMode.Play, SuperColor.Green, IsDrawnOnTop = false)]
-        public void InitLevel()
-        {
-            this.height = 2 * Camera.main.orthographicSize;
-            this.width = height * Camera.main.aspect;
-            this.height -= UIOffsety;
-            InitLevel(this.width, this.height);
+            return true;
         }
-
-        [Button(ActivationMode.Play, SuperColor.Blue, IsDrawnOnTop = false)]
-        public void PlaceBlock(Vector2 position)
-        {
-            if(IsOutOfGrid(position)) {
-                this.LogError("Placement out of the grid");
-            } 
-            else
-            {
-                Instantiate(Block, new Vector3(xscale * position.x + this.origin.x, yscale * position.y + this.origin.y, 0), Quaternion.identity);
-
-            }
-        }
-
-        [Button(ActivationMode.Play, SuperColor.Red, IsDrawnOnTop = false)]
-        public void PlaceMultiblock(Multiblock m, Vector2 position)
-        {
-            foreach (Vector2 v in m.BlockStructure)
-            {
-                Vector2 blockPos = position + v;
-                Debug.Log(blockPos);
-                if (!IsOutOfGrid(blockPos))
-                {
-                    PlaceBlock(blockPos);
-                }
-            }
-        }
-
-        public bool IsOutOfGrid(Vector2 position)
-        {
-            return position.x < 0 || position.y < 0 || position.x > this.width || position.y > this.height;
-        }
-
-        public float ToGridCoordinate(Vector2 position)
-        {
-            return position.y*this.width + position.x;
-        }
+        #endregion
     }
 }

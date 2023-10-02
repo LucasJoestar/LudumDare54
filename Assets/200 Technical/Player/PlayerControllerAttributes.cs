@@ -24,6 +24,10 @@ namespace LudumDare54 {
         [Tooltip("Movement speed curve, in unit/second")]
         public AdvancedCurveValue MoveSpeed = new AdvancedCurveValue(new Vector2(0f, 1f), .5f, AnimationCurve.Linear(0f, 0f, 1f, 1f));
 
+        [Space(5f)]
+
+        [Min(0f)] public float AimSpeed = 1f;
+
         [Space(10f), HorizontalLine(SuperColor.Grey, 1f), Space(10f)]
 
         public LayerMask ColliderMask = new LayerMask();
@@ -33,6 +37,20 @@ namespace LudumDare54 {
 
         [Tooltip("Cooldown interval between two fires (in seconds)")]
         [Enhanced, Range(0f, 5f)] public float FireCooldown = .5f;
+
+        [Space(10f), HorizontalLine(SuperColor.Grey, 1f), Space(10f)]
+
+        [Enhanced, Range(0f, 5f)] public float SpawnDuration = .5f;
+        [Enhanced, Range(0f, 5f)] public float SpawnMovementOffset = 1f;
+
+        public AnimationCurve SpawnMovementCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
+
+        [Space(10f)]
+
+        [Enhanced, Range(0f, 5f)] public float DespawnDuration = .5f;
+        [Enhanced, Range(0f, 5f)] public float DespawnMovementOffset = 1f;
+
+        public AnimationCurve DespawnMovementCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
 
         [Space(10f), HorizontalLine(SuperColor.Grey, 1f), Space(10f)]
 

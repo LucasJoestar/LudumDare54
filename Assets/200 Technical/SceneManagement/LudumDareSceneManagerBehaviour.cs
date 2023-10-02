@@ -31,7 +31,7 @@ namespace LudumDare54.UI {
         // Settings
         // -------------------------------------------
 
-        private static LudumDareLoadSceneSettings settings = new LudumDareLoadSceneSettings(LoadingMode.Black, LoadingChronos.None);
+        private static LudumDareLoadSceneSettings settings = new LudumDareLoadSceneSettings(LoadingMode.Transition, LoadingChronos.None);
         private static double loadingMinimumDuration = 0d;
 
         /// <summary>
@@ -159,7 +159,7 @@ namespace LudumDare54.UI {
             base.OnEnterPlayModeEditor(_loadingBundles, _settings);
 
             // Enter play mode settings.
-            _settings.Mode = LoadingMode.ScreenArt;
+            _settings.Mode = LoadingMode.Default;
             _settings.Chronos = LoadingChronos.FreezeInstant;
         }
         #endregion
