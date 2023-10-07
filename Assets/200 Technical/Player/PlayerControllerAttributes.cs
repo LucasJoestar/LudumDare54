@@ -56,6 +56,7 @@ namespace LudumDare54 {
 
         [Enhanced, Range(0f, 5f)] public float JumpHeight = 1.5f;
         [Enhanced, Range(0f, 1f)] public float JumpSpeed = .12f;
+        public Ease JumpEase = Ease.Linear;
 
         [Space(10f), HorizontalLine(SuperColor.Grey, 1f), Space(10f)]
 

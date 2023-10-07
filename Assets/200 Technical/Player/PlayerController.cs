@@ -2,10 +2,13 @@
 //
 // Notes:
 //
-//  • Camera crop (black bars / resolution)
-//
 //  • Simple fire
 //  • Collectible (Strawberry)
+//  • Wall & Jump Osbtacles
+//  • Cursor
+//  • Aim System
+//
+//  • Audio + Music
 //  • Footsteps (sprite + smoke)
 //
 // ============================================================================ //
@@ -15,13 +18,11 @@ using EnhancedEditor;
 using EnhancedFramework.Core;
 using EnhancedFramework.Core.GameStates;
 using LudumDare54.GameStates;
-using LudumDare54.UI;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Playables;
-using UnityEngine.SceneManagement;
 
 namespace LudumDare54
 {
@@ -48,7 +49,12 @@ namespace LudumDare54
         [Section("Player Controller")]
 
         [SerializeField, Enhanced, Required] private PlayerControllerAttributes attributes = null;
-        [SerializeField, Enhanced, Required] private Transform graph = null;
+        [SerializeField, Enhanced, Required] private Transform playerGraph = null;
+
+        [Space(5f)]
+
+        [SerializeField, Enhanced, Required] private SpriteRenderer playerSprite = null;
+        [SerializeField, Enhanced, Required] private SpriteRenderer shadow = null;
 
         [Space(5f)]
 
@@ -304,11 +310,13 @@ namespace LudumDare54
                 }
             }
 
+
             // Reset state.
             if (!HasControl) {
 
                 velocity = Vector2.zero;
                 ResetSpeed();
+                UpdateGround(false);
 
                 return;
             }
@@ -347,7 +355,7 @@ namespace LudumDare54
             // Velocity.
             UpdateSpeed();
             Move(velocity);
-            UpdateGround();
+            UpdateGround(true);
         }
         #endregion
 
@@ -442,7 +450,6 @@ namespace LudumDare54
         public bool Jump(Vector2 _from, float _distance) {
 
             Vector2 _direction = lastMovement;
-            _from.y = transform.position.y;
 
             if (Mathf.Abs(_direction.x) >= Mathf.Abs(_direction.y)) {
                 _direction.y = 0f;
@@ -468,7 +475,12 @@ namespace LudumDare54
             Vector3 _destination = ProjectUtility.ClampInCameraBounds(_from + ProjectUtility.GetCoords(_direction));
             PlayJump();
 
-            jumpSequence.Append(transform.DOJump(_destination, attributes.JumpHeight, 1, (_destination - transform.position).magnitude * attributes.JumpSpeed).SetEase(Ease.Linear));
+            Vector3 _velocity = _destination - transform.position;
+            float _duration = _velocity.magnitude * attributes.JumpSpeed;
+            Ease _ease = attributes.JumpEase;
+
+            jumpSequence.Append(transform.DOBlendableMoveBy(_velocity, _duration).SetEase(_ease));
+            jumpSequence.Join(playerGraph.DOLocalJump(Vector3.zero, attributes.JumpHeight, 1, _duration).SetEase(_ease));
             jumpSequence.SetRecyclable(true).SetAutoKill(true).OnKill(OnKill);
 
             return true;
@@ -476,6 +488,8 @@ namespace LudumDare54
             // ----- Local Method ----- \\
 
             void OnKill() {
+
+                playerGraph.ResetLocal();
 
                 PlayIdle();
 
@@ -502,7 +516,7 @@ namespace LudumDare54
 
         // -----------------------
 
-        private void UpdateGround() {
+        private void UpdateGround(bool canFall = true) {
 
             // Ignore.
             if (!isGrounded) {
@@ -510,12 +524,14 @@ namespace LudumDare54
             }
 
             bool _isGrounded = ColliderOverlap(VariousSettings.I.GroundMask) != 0;
-            SetGrounded(_isGrounded);
+            SetGrounded(_isGrounded, canFall);
         }
 
-        private void SetGrounded(bool _isGrounded) {
+        private void SetGrounded(bool _isGrounded, bool canFall) {
 
-            if (_isGrounded == isGrounded)
+            shadow.enabled = _isGrounded;
+
+            if (!canFall || (_isGrounded == isGrounded))
                 return;
 
             if (_isGrounded) {
@@ -550,7 +566,7 @@ namespace LudumDare54
 
             Tween _movement = Transform.DOBlendableMoveBy(new Vector3(0f, attributes.FallMovementOffset, 0f), attributes.FallMovementDuration).SetEase(attributes.FallMovementEase);
             Tween _scale    = Transform.DOScale(0f, duration).SetEase(attributes.FallScaleEase);
-            Tween _rotation = graph.DOBlendableRotateBy(new Vector3(0f, 0f, attributes.FallRotation), duration, RotateMode.LocalAxisAdd).SetEase(attributes.FallRotationEase);
+            Tween _rotation = playerSprite.transform.DOBlendableRotateBy(new Vector3(0f, 0f, attributes.FallRotation), duration, RotateMode.LocalAxisAdd).SetEase(attributes.FallRotationEase);
 
             fallSequence.Append(_movement);
             fallSequence.Join(_rotation);
@@ -570,7 +586,7 @@ namespace LudumDare54
                 isGrounded   = true;
 
                 Transform.ResetLocal();
-                graph.ResetLocal();
+                playerSprite.transform.ResetLocal();
 
                 isFacingRight = true;
                 Flip(initFacingRight);

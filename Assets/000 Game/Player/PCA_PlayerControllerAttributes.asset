@@ -142,6 +142,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  JumpHeight: 1.25
+  JumpSpeed: 0.12
+  JumpEase: 1
   FallDelay: 0.1
   FallDuration: 0.7
   FallRespawnDelay: 0.3

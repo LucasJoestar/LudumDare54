@@ -15,5 +15,5 @@ MonoBehaviour:
   Description: Development
   BuildTarget: 19
   BuildOptions: 786441
-  buildCount: 1
+  buildCount: 2
   scriptingDefineSymbols: CHRONOS_INPUT;DEVELOPER_CONSOLE;DEVELOPMENT;DOTWEEN_ENABLED;ENHANCED_LOGGER;ENHANCED_LOGS;UNITY_POST_PROCESSING_STACK_V2
