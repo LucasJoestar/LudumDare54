@@ -2,14 +2,12 @@
 //
 // Notes:
 //
-//  • Simple fire
 //  • Collectible (Strawberry)
 //  • Wall & Jump Osbtacles
-//  • Cursor
-//  • Aim System
 //
 //  • Audio + Music
 //  • Footsteps (sprite + smoke)
+//  • Simple fire
 //
 // ============================================================================ //
 
@@ -50,6 +48,7 @@ namespace LudumDare54
 
         [SerializeField, Enhanced, Required] private PlayerControllerAttributes attributes = null;
         [SerializeField, Enhanced, Required] private Transform playerGraph = null;
+        [SerializeField, Enhanced, Required] private Transform flipRoot = null;
 
         [Space(5f)]
 
@@ -434,7 +433,7 @@ namespace LudumDare54
             if (_isFacingRight == isFacingRight)
                 return;
 
-            Transform.Rotate(0f, 180f * _isFacingRight.Signf(), 0f);
+            flipRoot.Rotate(0f, 180f * _isFacingRight.Signf(), 0f);
             isFacingRight = _isFacingRight;
         }
         #endregion

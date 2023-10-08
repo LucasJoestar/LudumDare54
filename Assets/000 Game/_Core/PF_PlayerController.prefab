@@ -357,7 +357,7 @@ MonoBehaviour:
     Tags:
     - id: 6
   lastModifiedBy: Lucas
-  lastModifiedDate: 07/10/2023 19:02:21
+  lastModifiedDate: 08/10/2023 16:55:53
   IsEditorPreview: 0
   isHeader: 0
   overrideHierarchyStyle: 0
@@ -451,6 +451,7 @@ MonoBehaviour:
     prefabID: 0
   attributes: {fileID: 11400000, guid: c5083397c1cfda349911b076f69dd748, type: 2}
   playerGraph: {fileID: 1844006604668803824}
+  flipRoot: {fileID: 5922721273891124901}
   playerSprite: {fileID: 145568060882791320}
   shadow: {fileID: 7216597078204018944}
   rigidbody: {fileID: 979034479387768836}
@@ -462,7 +463,7 @@ MonoBehaviour:
   spellAnchor: {fileID: 5259781651361038379}
   isPlayable: 1
   debugVelocity: 0
-  debugAim: 0
+  debugAim: 1
   isFacingRight: 1
   isGrounded: 1
   isLoading: 0
@@ -661,7 +662,7 @@ MonoBehaviour:
   Tags:
     Tags: []
   lastModifiedBy: Lucas
-  lastModifiedDate: 01/10/2023 23:06:31
+  lastModifiedDate: 08/10/2023 16:53:52
   IsEditorPreview: 0
   isHeader: 0
   overrideHierarchyStyle: 0
@@ -773,11 +774,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1168755709
-  m_SortingLayer: 1
-  m_SortingOrder: -1
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.26383924, g: 1, b: 0, a: 1}
+  m_SortingLayerID: -1626152411
+  m_SortingLayer: 3
+  m_SortingOrder: 999
+  m_Sprite: {fileID: 21300000, guid: d43519640dba3684a9e871b59348f055, type: 3}
+  m_Color: {r: 1, g: 0.74775314, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

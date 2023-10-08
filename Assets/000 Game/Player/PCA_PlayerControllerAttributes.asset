@@ -64,7 +64,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  AimSpeed: 0.7
+  AimSpeed: 1
   ColliderMask:
     serializedVersion: 2
     m_Bits: 128
